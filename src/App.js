@@ -11,6 +11,7 @@ function App() {
             <RightSideBar />
         </div>
     );
+
 }
 
 export default App;
