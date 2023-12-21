@@ -1,6 +1,8 @@
 import './home.css';
 import { IoIosSearch } from 'react-icons/io';
 
+import TypleList from '../../components/typeList/typeList';
+
 function Home() {
     return (
         <div className="home-wrapper">
@@ -70,22 +72,7 @@ function Home() {
                             <span>Drink</span>
                         </div>
                     </div>
-
-                    {/* Type list */}
-
-                    <div className="type-list-container">
-                        <div>
-                            <img />
-                            <span></span>
-                            <div>
-                                <span>
-                                    <span>Rs.</span>18
-                                </span>
-
-                                <div>+</div>
-                            </div>
-                        </div>
-                    </div>
+                    <TypleList />
                 </div>
             </div>
         </div>
