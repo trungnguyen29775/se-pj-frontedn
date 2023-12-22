@@ -5,26 +5,30 @@ import { AiOutlinePlus } from 'react-icons/ai';
 function TypleList(type, data) {
     return (
         <div className="type-list-container">
-            <div className="type-list-element">
-                <img className="type-list-element__img" src="/image/pizza/pizza1.jpg" />
-                <span className="name-food">Margarita Pizza</span>
-                <div className="star-container">
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                </div>
-                <div className="number-left">
-                    <span>
-                        <span className="highlight">Rs.</span>18
-                    </span>
+            {[1, 1, 1, 1, 1, 1, 1, 1].map((item, key) => {
+                return (
+                    <div className="type-list-element">
+                        <img className="type-list-element__img" src="/image/pizza/pizza1.jpg" />
+                        <span className="name-food">Margarita Pizza</span>
+                        <div className="star-container">
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                        </div>
+                        <div className="number-left">
+                            <span>
+                                <span className="highlight">Rs.</span>18
+                            </span>
 
-                    <div className="add-food">
-                        <AiOutlinePlus style={{ margin: 'auto' }} />
+                            <div className="add-food">
+                                <AiOutlinePlus style={{ margin: 'auto' }} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                );
+            })}
         </div>
     );
 }

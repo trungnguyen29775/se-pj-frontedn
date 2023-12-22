@@ -1,8 +1,8 @@
 .type-list-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-top: 50px;
+    flex-wrap: wrap;
 }
 .type-list-element__img {
     height: 150px;
@@ -17,6 +17,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 .type-list-element .name-food {
