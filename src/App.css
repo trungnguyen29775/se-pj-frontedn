@@ -17,4 +17,6 @@ body {
     --danger: rgb(241, 70, 70);
     --success: rgb(32, 233, 32);
     --text-gray: rgb(136, 135, 135);
+    height: 100%;
+    width: 100%;
 }

@@ -1,0 +1,13 @@
+.home-layout-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+}
+
+.home-layout-wrapper button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}

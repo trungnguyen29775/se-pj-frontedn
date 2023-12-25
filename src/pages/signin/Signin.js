@@ -1,11 +1,13 @@
 import React from 'react';
 import './signIn.css';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
+    const navigate = useNavigate();
     return (
         <div className="auth">
-            <div className="form">
+            <div className="form-container">
                 <div className="logo">
                     <img src="https://cdn-icons-png.flaticon.com/512/4039/4039232.png" alt="" />
                 </div>
@@ -18,7 +20,7 @@ export default function SignIn() {
                     <button type="submit">Login</button>
                 </form>
                 <div className="forget">
-                    <p>New user?</p> <a>Register</a>
+                    <p>New user?</p> <span onClick={() => navigate('/sign-up')}>Register</span>
                 </div>
             </div>
         </div>

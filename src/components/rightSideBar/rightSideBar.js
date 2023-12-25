@@ -2,12 +2,22 @@ import './rightSideBar.css';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaRegBell } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function RightSideBar() {
+    const navigate = useNavigate();
+
+    const handleLoginClick = (event) => {
+        event.stopPropagation();
+        navigate('/sign-in');
+    };
+
     return (
         <div className="right-side-bar-wrapper">
             <div className="right-side-bar-header">
-                <button className="right-side-bar-header__button">Login</button>
+                <button onClick={(e) => handleLoginClick(e)} className="right-side-bar-header__button">
+                    Login
+                </button>
                 <div className="header-icon--center">
                     <FiShoppingCart />
                 </div>

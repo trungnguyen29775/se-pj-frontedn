@@ -2,8 +2,10 @@ import './home.css';
 import { IoIosSearch } from 'react-icons/io';
 
 import TypleList from '../../components/typeList/typeList';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigate = useNavigate();
     return (
         <div className="home-wrapper">
             <div className="home-header-container">

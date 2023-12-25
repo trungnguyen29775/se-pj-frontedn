@@ -7,7 +7,7 @@ function TypleList(type, data) {
         <div className="type-list-container">
             {[1, 1, 1, 1, 1, 1, 1, 1].map((item, key) => {
                 return (
-                    <div className="type-list-element">
+                    <div className="type-list-element" key={key}>
                         <img className="type-list-element__img" src="/image/pizza/pizza1.jpg" />
                         <span className="name-food">Margarita Pizza</span>
                         <div className="star-container">
