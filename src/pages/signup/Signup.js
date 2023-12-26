@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import instance from '../../axios/instance';
 import Loading from '../../components/loadingScreen/loading';
 import StateContext from '../../redux/Context';
-import { getUserData, loggedIn, login } from '../../redux/Action';
+import { getUserData, logged } from '../../redux/Action';
+import { LOGGED } from '../../constant/constant.redux';
 function SignUp() {
     const navigate = useNavigate();
     const [state, dispatchState] = useContext(StateContext);
@@ -15,7 +16,8 @@ function SignUp() {
 
     useEffect(() => {
         if (registerState === 'succeed') {
-            dispatchState(loggedIn);
+            dispatchState({type:LOGGED});
+            navigate('/')
         }
     }, [registerState]);
 

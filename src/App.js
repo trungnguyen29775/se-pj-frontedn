@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import SignIn from './pages/signIn/signIn';
 import HomeLayout from './layout/homeLayout/homeLayout';
 import StateContext from './redux/Context';
 import { useContext, useEffect } from 'react';
 import SignUp from './pages/signUp/signUp';
+import SignIn from './pages/signIn/signIn';
 
 function App() {
     const [state, setState] = useContext(StateContext);
@@ -13,7 +13,7 @@ function App() {
     }, [state]);
     return (
         <Routes>
-            <Route path="/" element={<HomeLayout />} />
+            <Route path="/" element={state.login?<HomeLayout/>:<SignIn/>} />
             <Route path="/sign-up" element={<SignUp />} />
         </Routes>
     );

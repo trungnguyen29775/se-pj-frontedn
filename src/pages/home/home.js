@@ -3,9 +3,13 @@ import { IoIosSearch } from 'react-icons/io';
 
 import TypleList from '../../components/typeList/typeList';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import StateContext from '../../redux/Context';
 
 function Home() {
     const navigate = useNavigate();
+
+    const [state,setState] =useContext(StateContext)
     return (
         <div className="home-wrapper">
             <div className="home-header-container">
@@ -21,7 +25,7 @@ function Home() {
                 <div className="home-welcome">
                     <img className="home-welcom__img" src="/image/pizza-shipper.png" />
                     <div className="welcome-title-container">
-                        <span className="header">Hello Nguyễn Trần Minh Trung</span>
+                        <span className="header">Hello {state.userData.name}</span>
                         <span>
                             Get Free delivery <span className="highlight">500 Rs</span> and above
                         </span>

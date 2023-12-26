@@ -6,7 +6,7 @@ import { MdLogout } from 'react-icons/md';
 import { IoSettingsOutline } from 'react-icons/io5';
 import StateContext from '../../redux/Context';
 import { useContext } from 'react';
-import { HOME } from '../../constant/constant.redux';
+import { HOME, LOGOUT } from '../../constant/constant.redux';
 import { navHome, navSetting } from '../../redux/Action';
 
 function LeftSideBar() {
@@ -39,6 +39,10 @@ function LeftSideBar() {
         }
     };
 
+    const handleLogOut = (event)=>{
+        dispatchState({type:LOGOUT})
+    }
+
     return (
         <div className="left-side-container">
             <div className="left-side-navigate-container">
@@ -58,7 +62,7 @@ function LeftSideBar() {
                     <IoSettingsOutline style={{ margin: 'auto' }} />
                 </div>
             </div>
-            <div className="left-side-navigate-icon-container logout" onClick={(e) => handleLeftSideNav(e)}>
+            <div className="left-side-navigate-icon-container logout" onClick={(e) => handleLogOut(e)}>
                 <MdLogout style={{ margin: 'auto' }} />
             </div>
         </div>

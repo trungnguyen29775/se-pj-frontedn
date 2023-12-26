@@ -20,6 +20,14 @@
     right: 0;
 }
 
+.right-side-bar-header img
+{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 .right-side-bar-header__button {
     background-color: var(--primary);
     color: white;

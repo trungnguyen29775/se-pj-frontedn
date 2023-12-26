@@ -3,6 +3,8 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { FaRegBell } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import StateContext from '../../redux/Context';
 
 function RightSideBar() {
     const navigate = useNavigate();
@@ -12,12 +14,17 @@ function RightSideBar() {
         navigate('/sign-in');
     };
 
+    const [state,setState] = useContext(StateContext)
+
     return (
         <div className="right-side-bar-wrapper">
             <div className="right-side-bar-header">
-                <button onClick={(e) => handleLoginClick(e)} className="right-side-bar-header__button">
+                {
+                    state.login?<img src='/image/default-avt-image.jpg'/>:  <button onClick={(e) => handleLoginClick(e)} className="right-side-bar-header__button">
                     Login
                 </button>
+                }
+              
                 <div className="header-icon--center">
                     <FiShoppingCart />
                 </div>
