@@ -5,20 +5,15 @@ import TypleList from '../../components/typeList/typeList';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import StateContext from '../../redux/Context';
+import Header from '../../components/header/header';
 
 function Home() {
     const navigate = useNavigate();
 
-    const [state,setState] =useContext(StateContext)
+    const [state, setState] = useContext(StateContext);
     return (
         <div className="home-wrapper">
-            <div className="home-header-container">
-                <img className="logo__img" src="image/logo.png" />
-                <div className="home-search-container">
-                    <input className="home-search-container__input" placeholder="Search for food" />
-                    <IoIosSearch fontSize={'25px'} />
-                </div>
-            </div>
+            <Header />
             {/* Home content */}
             <div className="home-content-container">
                 {/* Content 1 */}

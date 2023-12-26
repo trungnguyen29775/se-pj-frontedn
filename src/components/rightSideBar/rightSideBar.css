@@ -20,8 +20,7 @@
     right: 0;
 }
 
-.right-side-bar-header img
-{
+.right-side-bar-header img {
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -176,4 +175,16 @@
 
 button.danger {
     background-color: var(--danger);
+}
+
+.right-side-bar-payment__button {
+    background-color: #f49001;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    color: #fff;
+    min-width: 70px;
+    cursor: pointer;
+    font-size: 17px;
 }

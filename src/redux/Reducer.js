@@ -1,4 +1,4 @@
-import { GET_USER_DATA, HOME, LOGGED, LOGOUT, SETTING } from '../constant/constant.redux';
+import { GET_USER_DATA, HOME, LOGGED, LOGOUT, ORDER, SETTING } from '../constant/constant.redux';
 
 export const initState = {
     login: false,
@@ -24,30 +24,34 @@ const Reducer = (state, action) => {
                 element: HOME,
             };
         }
-        
+
         case LOGOUT: {
             return {
                 ...state,
                 login: false,
             };
         }
-        case GET_USER_DATA: {   
+        case GET_USER_DATA: {
             return {
                 ...state,
                 userData: action.payload,
             };
         }
 
-        case LOGGED:{
-            return{
+        case LOGGED: {
+            return {
                 ...state,
-                login:true
-            }
+                login: true,
+            };
         }
-        
+        case ORDER:
+            return {
+                ...state,
+                element: ORDER,
+            };
         default: {
             console.log('Hello');
-            return state
+            return state;
         }
     }
 };

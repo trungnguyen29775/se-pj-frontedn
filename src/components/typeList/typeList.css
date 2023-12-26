@@ -21,6 +21,11 @@
     margin-bottom: 20px;
 }
 
+.type-list-element:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 .type-list-element .name-food {
     font-size: 16px;
     color: var(--text-gray);

@@ -14,17 +14,19 @@ function RightSideBar() {
         navigate('/sign-in');
     };
 
-    const [state,setState] = useContext(StateContext)
+    const [state, setState] = useContext(StateContext);
 
     return (
         <div className="right-side-bar-wrapper">
             <div className="right-side-bar-header">
-                {
-                    state.login?<img src='/image/default-avt-image.jpg'/>:  <button onClick={(e) => handleLoginClick(e)} className="right-side-bar-header__button">
-                    Login
-                </button>
-                }
-              
+                {state.login ? (
+                    <img src="/image/default-avt-image.jpg" />
+                ) : (
+                    <button onClick={(e) => handleLoginClick(e)} className="right-side-bar-header__button">
+                        Login
+                    </button>
+                )}
+
                 <div className="header-icon--center">
                     <FiShoppingCart />
                 </div>
@@ -69,6 +71,8 @@ function RightSideBar() {
                             </div>
                         </div>
                     </div>
+
+                    <button className="right-side-bar-payment__button">PROCEED TO CHECKOUT</button>
                 </div>
             </div>
         </div>

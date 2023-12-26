@@ -7,7 +7,7 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import StateContext from '../../redux/Context';
 import { useContext } from 'react';
 import { HOME, LOGOUT } from '../../constant/constant.redux';
-import { navHome, navSetting } from '../../redux/Action';
+import { navHome, navOrder, navSetting } from '../../redux/Action';
 
 function LeftSideBar() {
     const [state, dispatchState] = useContext(StateContext);
@@ -24,8 +24,8 @@ function LeftSideBar() {
                 dispatchState(navSetting(event));
                 break;
             }
-            case 'home': {
-                console.log('home');
+            case 'order': {
+                dispatchState(navOrder(event));
                 break;
             }
             case 'setting': {
@@ -33,15 +33,15 @@ function LeftSideBar() {
                 break;
             }
             default: {
-                console.log('defalut');
+                console.log(navDir);
                 break;
             }
         }
     };
 
-    const handleLogOut = (event)=>{
-        dispatchState({type:LOGOUT})
-    }
+    const handleLogOut = (event) => {
+        dispatchState({ type: LOGOUT });
+    };
 
     return (
         <div className="left-side-container">
@@ -49,13 +49,13 @@ function LeftSideBar() {
                 <div className="left-side-navigate-icon-container home active " onClick={(e) => handleLeftSideNav(e)}>
                     <FaHome style={{ margin: 'auto' }} />
                 </div>
-                <div className="left-side-navigate-icon-container cart" onClick={(e) => handleLeftSideNav(e)}>
+                <div className="left-side-navigate-icon-container order" onClick={(e) => handleLeftSideNav(e)}>
                     <FaBoxOpen style={{ margin: 'auto' }} />
                 </div>
                 <div className="left-side-navigate-icon-container favorite" onClick={(e) => handleLeftSideNav(e)}>
                     <IoIosHeartHalf style={{ margin: 'auto' }} />
                 </div>
-                <div className="left-side-navigate-icon-container order" onClick={(e) => handleLeftSideNav(e)}>
+                <div className="left-side-navigate-icon-container address" onClick={(e) => handleLeftSideNav(e)}>
                     <FaRegFileAlt style={{ margin: 'auto' }} />
                 </div>
                 <div className="left-side-navigate-icon-container setting" onClick={(e) => handleLeftSideNav(e)}>

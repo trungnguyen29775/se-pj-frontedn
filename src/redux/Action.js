@@ -1,4 +1,4 @@
-import { GET_USER_DATA, HOME, LOGGED, LOGGED_IN, SETTING } from '../constant/constant.redux';
+import { GET_USER_DATA, HOME, LOGGED, LOGGED_IN, ORDER, SETTING } from '../constant/constant.redux';
 
 export const navSetting = () => {
     return {
@@ -22,5 +22,11 @@ export const getUserData = (payload) => {
 export const logged = () => {
     return {
         type: LOGGED,
+    };
+};
+
+export const navOrder = () => {
+    return {
+        type: ORDER,
     };
 };

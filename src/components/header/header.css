@@ -1,0 +1,30 @@
+.logo__img {
+    height: 50px;
+    width: 50px;
+}
+.home-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    margin-top: 30px;
+}
+
+.home-search-container {
+    background-color: white;
+    height: 44px;
+    width: 260px;
+    padding: 0px 20px;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-search-container__input {
+    outline: 0px;
+    border: 0px;
+    font-size: 14px;
+    font-weight: 500;
+}
