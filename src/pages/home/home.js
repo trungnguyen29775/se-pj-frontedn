@@ -73,7 +73,9 @@ function Home() {
                             <span>Drink</span>
                         </div>
                     </div>
-                    <TypleList />
+                    <div className="type-list-container">
+                        {[1,1,1,1,1].map((item,key) => <TypleList data ={item} type={item} key ={key}/>)}
+                    </div>
                 </div>
             </div>
         </div>
