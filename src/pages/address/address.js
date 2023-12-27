@@ -27,7 +27,7 @@ function Address() {
                     onSubmit={(e) => handleSubmit(e)}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <span className="address-form__span">ADD ADDRESS</span>
+                    <span className="address-form__span hide">ADD ADDRESS</span>
                     <input className="address-form__input" placeholder="Name" />
                     <input className="address-form__input" placeholder="Mobile No." />
                     <input className="address-form__input" placeholder="Pin Code" />
