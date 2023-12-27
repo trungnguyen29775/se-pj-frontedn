@@ -5,3 +5,4 @@ export const LOGOUT = 'LOGOUT';
 export const GET_USER_DATA = 'GET_USER_DATA';
 export const LOGGED = 'LOGGED';
 export const ORDER = 'ORDER';
+export const ADDRESS = 'ADDRESS';
