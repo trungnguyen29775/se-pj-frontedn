@@ -13,6 +13,11 @@ function RightSideBar() {
         event.stopPropagation();
         navigate('/sign-in');
     };
+    
+    const handlePaymentClick = (event) => {
+        event.stopPropagation();
+        navigate('/payment')
+    };
 
     const [state, setState] = useContext(StateContext);
 
@@ -72,7 +77,7 @@ function RightSideBar() {
                         </div>
                     </div>
 
-                    <button className="right-side-bar-payment__button">PROCEED TO CHECKOUT</button>
+                    <button className="right-side-bar-payment__button" onClick={(e) => handlePaymentClick(e)}>PROCEED TO CHECKOUT</button>
                 </div>
             </div>
         </div>

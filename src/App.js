@@ -5,6 +5,7 @@ import StateContext from './redux/Context';
 import { useContext, useEffect } from 'react';
 import SignUp from './pages/signUp/signUp';
 import SignIn from './pages/signIn/signIn';
+import Payment from './pages/payment/payment';
 
 function App() {
     const [state, setState] = useContext(StateContext);
@@ -15,6 +16,7 @@ function App() {
         <Routes>
             <Route path="/" element={state.login?<HomeLayout/>:<SignIn/>} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/payment" element={<Payment />} />
         </Routes>
     );
 }
