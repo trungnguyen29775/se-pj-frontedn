@@ -4,18 +4,22 @@ import './payment.css'
 
 export default function Payment() {
     const [selected, setSelected] = useState(0);
-    const [show,setShow]=useState(false)
-    const handleSelectAddress = () => {
-
-    }
+    const [show,setShow]=useState(false);
+    const [addressToEdit,setAddressToEdit]=useState();
     const deleteAddress = () => {
-
-    }
-    const handleUpdateAddress = () => {
 
     }
     const handlePayment = () => {
 
+    }
+    const handleUpdateAddress=(address)=>{
+        console.log('a')
+        setAddressToEdit(address)
+        setShow(true)
+    }
+
+    const handleSelectAddress=(address,i)=>{
+        setSelected(i);
     }
 
     //test address
@@ -27,7 +31,17 @@ export default function Payment() {
         state: "state",
         pincode: "pincode",
         mobNo:'0903821515'
-    }]
+    },
+    {
+        name:"Thanh",
+        address: "281 duong 9",
+        town:"5",
+        city: "Ho Chi Minh",
+        state: "state",
+        pincode: "pincode",
+        mobNo:'0903821515'
+    }
+    ]
     return (
     <div className='payment'>
         <div className="shipping-details">
