@@ -1,4 +1,13 @@
-import { ADDRESS, GET_USER_DATA, HOME, LOGGED, LOGGED_IN, ORDER, SETTING } from '../constant/constant.redux';
+import {
+    ADDRESS,
+    GET_USER_DATA,
+    GET_ADDRESS_DATA,
+    HOME,
+    LOGGED,
+    LOGGED_IN,
+    ORDER,
+    SETTING,
+} from '../constant/constant.redux';
 
 export const navSetting = () => {
     return {
@@ -15,6 +24,13 @@ export const navHome = () => {
 export const getUserData = (payload) => {
     return {
         type: GET_USER_DATA,
+        payload,
+    };
+};
+
+export const getAddressData = (payload) => {
+    return {
+        type: GET_ADDRESS_DATA,
         payload,
     };
 };
