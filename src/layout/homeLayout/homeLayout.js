@@ -6,6 +6,8 @@ import { useContext, useState } from 'react';
 import Setting from '../../pages/setting/Setting';
 import StateContext from '../../redux/Context';
 import Order from '../../pages/order/order';
+import { ADDRESS, HOME, ORDER, SETTING } from '../../constant/constant.redux';
+import Address from '../../pages/address/address';
 
 function HomeLayout() {
     const [state, setState] = useContext(StateContext);
@@ -13,12 +15,14 @@ function HomeLayout() {
     return (
         <div className="home-layout-wrapper">
             <LeftSideBar />
-            {state.element === 'HOME' ? (
+            {state.element === HOME ? (
                 <Home />
-            ) : state.element === 'SETTING' ? (
+            ) : state.element === SETTING ? (
                 <Setting />
-            ) : state.element === 'ORDER' ? (
+            ) : state.element === ORDER ? (
                 <Order />
+            ) : state.element === ADDRESS ? (
+                <Address />
             ) : (
                 ''
             )}

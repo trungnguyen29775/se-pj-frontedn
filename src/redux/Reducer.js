@@ -1,4 +1,4 @@
-import { GET_USER_DATA, HOME, LOGGED, LOGOUT, ORDER, SETTING } from '../constant/constant.redux';
+import { ADDRESS, GET_USER_DATA, HOME, LOGGED, LOGOUT, ORDER, SETTING } from '../constant/constant.redux';
 
 export const initState = {
     login: false,
@@ -49,6 +49,12 @@ const Reducer = (state, action) => {
                 ...state,
                 element: ORDER,
             };
+        case ADDRESS: {
+            return {
+                ...state,
+                element: ADDRESS,
+            };
+        }
         default: {
             console.log('Hello');
             return state;

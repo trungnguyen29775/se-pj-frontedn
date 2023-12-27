@@ -2,7 +2,7 @@ import './typeList.css';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-function TypleList(type, data,key) {
+function TypleList(type, data, key) {
     return (
         <div className="type-list-element" key={key}>
             <img className="type-list-element__img" src="/image/pizza/pizza1.jpg" />
@@ -24,7 +24,6 @@ function TypleList(type, data,key) {
                 </div>
             </div>
         </div>
-
     );
 }
 

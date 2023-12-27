@@ -7,7 +7,7 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import StateContext from '../../redux/Context';
 import { useContext } from 'react';
 import { HOME, LOGOUT } from '../../constant/constant.redux';
-import { navHome, navOrder, navSetting } from '../../redux/Action';
+import { navAddress, navHome, navOrder, navSetting } from '../../redux/Action';
 
 function LeftSideBar() {
     const [state, dispatchState] = useContext(StateContext);
@@ -28,8 +28,8 @@ function LeftSideBar() {
                 dispatchState(navOrder(event));
                 break;
             }
-            case 'setting': {
-                console.log('setting');
+            case 'address': {
+                dispatchState(navAddress(event));
                 break;
             }
             default: {
