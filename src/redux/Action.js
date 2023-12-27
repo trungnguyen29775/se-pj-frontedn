@@ -1,4 +1,4 @@
-import { GET_USER_DATA, HOME, LOGGED, LOGGED_IN, ORDER, SETTING } from '../constant/constant.redux';
+import { ADDRESS, GET_USER_DATA, HOME, LOGGED, LOGGED_IN, ORDER, SETTING } from '../constant/constant.redux';
 
 export const navSetting = () => {
     return {
@@ -28,5 +28,11 @@ export const logged = () => {
 export const navOrder = () => {
     return {
         type: ORDER,
+    };
+};
+
+export const navAddress = () => {
+    return {
+        type: ADDRESS,
     };
 };
