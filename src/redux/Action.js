@@ -7,6 +7,7 @@ import {
     LOGGED_IN,
     ORDER,
     SETTING,
+    PAYMENT,
 } from '../constant/constant.redux';
 
 export const navSetting = () => {
@@ -50,5 +51,11 @@ export const navOrder = () => {
 export const navAddress = () => {
     return {
         type: ADDRESS,
+    };
+};
+
+export const navPayment = () => {
+    return {
+        type: PAYMENT,
     };
 };

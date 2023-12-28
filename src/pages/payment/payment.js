@@ -4,7 +4,7 @@ import instance from '../../axios/instance';
 import { RiAddFill } from 'react-icons/ri';
 import './payment.css';
 import StateContext from '../../redux/Context';
-import { getAddressData } from '../../redux/Action';
+import { getUserData } from '../../redux/Action';
 
 export default function Payment() {
     const navigate = useNavigate();
@@ -20,27 +20,26 @@ export default function Payment() {
     const [city, setCity] = useState('');
 
     useEffect(() => {
-        navigate('/payment');
+        if (addressState === 'succeed') {
+            navigate('/payment');
+        }
     }, [addressState]);
     const handleSubmit = (event) => {
         event.preventDefault();
-        setAddressState('AddingAdress');
         instance
             .post('/address', {
                 name,
-                mobNum,
                 pinCode,
                 address,
                 town,
                 state: stateAddress,
                 city,
+                userId: state.userData.userId,
             })
             .then((res) => {
                 if (res.status === 200) {
                     setTimeout(() => {
-                        dispatchState(getAddressData(res.data));
-                        console.log(state);
-                        setAddressState('succeed');
+                        console.log('succeed');
                     }, 1000);
                 }
             })
@@ -130,7 +129,7 @@ export default function Payment() {
                     />
                     <input
                         className="address-form__input"
-                        placeholder="Locality/Town"
+                        placeholder="Town/Locality"
                         name="town"
                         type="text"
                         value={town}
@@ -167,7 +166,7 @@ export default function Payment() {
                                     <div
                                         onClick={() => handleSelectAddress(address, i)}
                                         className={`og-add ${selected === i && 'selected'}`}
-                                        key={address._id}
+                                        key={i}
                                     >
                                         <p>{address.name}</p>
                                         <span>
@@ -225,17 +224,17 @@ export default function Payment() {
                                 </h3>
                             </div>
                         </div>
-                        <div class="payment-type">
+                        <div className="payment-type">
                             <h3>Select Payment type</h3>
-                            <div class="payments-opts">
-                                <div class="payment-method">
-                                    <div class="select-opt">
-                                        <input type="radio" name="payment" id="cod" value="COD" checked="" />
-                                        <label for="cod">CASH ON DELIVERY</label>
+                            <div className="payments-opts">
+                                <div className="payment-method">
+                                    <div className="select-opt">
+                                        <input type="radio" name="payment" id="cod" value="COD" />
+                                        <label htmlFor="cod">CASH ON DELIVERY</label>
                                     </div>
-                                    <div class="select-opt">
+                                    <div className="select-opt">
                                         <input type="radio" name="payment" id="paypal" value="paypal" />
-                                        <label for="paypal">ZALOPAY</label>
+                                        <label htmlFor="paypal">ZALOPAY</label>
                                     </div>
                                 </div>
                             </div>

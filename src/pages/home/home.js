@@ -74,7 +74,9 @@ function Home() {
                         </div>
                     </div>
                     <div className="type-list-container">
-                        {[1,1,1,1,1].map((item,key) => <TypleList data ={item} type={item} key ={key}/>)}
+                        {[1, 1, 1, 1, 1].map((item, key) => (
+                            <TypleList data={item} type={item} key={key} />
+                        ))}
                     </div>
                 </div>
             </div>

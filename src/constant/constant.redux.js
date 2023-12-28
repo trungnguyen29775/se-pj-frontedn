@@ -7,3 +7,4 @@ export const GET_ADDRESS_DATA = 'GET_ADDRESS_DATA';
 export const LOGGED = 'LOGGED';
 export const ORDER = 'ORDER';
 export const ADDRESS = 'ADDRESS';
+export const PAYMENT = 'PAYMENT';

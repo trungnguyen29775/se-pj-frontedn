@@ -5,21 +5,22 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import StateContext from '../../redux/Context';
+import { navPayment, getUserData } from '../../redux/Action';
 
 function RightSideBar() {
     const navigate = useNavigate();
+    const [state, dispatchState] = useContext(StateContext);
 
     const handleLoginClick = (event) => {
         event.stopPropagation();
         navigate('/sign-in');
     };
-    
+
     const handlePaymentClick = (event) => {
         event.stopPropagation();
-        navigate('/payment')
+        dispatchState(navPayment());
+        navigate('/payment');
     };
-
-    const [state, setState] = useContext(StateContext);
 
     return (
         <div className="right-side-bar-wrapper">
@@ -77,7 +78,9 @@ function RightSideBar() {
                         </div>
                     </div>
 
-                    <button className="right-side-bar-payment__button" onClick={(e) => handlePaymentClick(e)}>PROCEED TO CHECKOUT</button>
+                    <button className="right-side-bar-payment__button" onClick={(e) => handlePaymentClick(e)}>
+                        PROCEED TO CHECKOUT
+                    </button>
                 </div>
             </div>
         </div>
