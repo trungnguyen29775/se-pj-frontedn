@@ -6,12 +6,16 @@ function Address() {
         event.preventDefault();
         event.stopPropagation();
         const formContainer = event.target.closest('.add-address-form-container');
+        const homeWrapper = document.querySelector('.home-layout-wrapper');
+        homeWrapper.classList.remove('overflow-hidden');
         console.log(formContainer.classList);
         formContainer.classList.add('hide');
     };
 
     const handleShowAddAddressForm = (event) => {
         const formContainer = document.querySelector('.add-address-form-container');
+        const homeWrapper = document.querySelector('.home-layout-wrapper');
+        homeWrapper.classList.add('overflow-hidden');
         formContainer.classList.remove('hide');
     };
 
@@ -21,7 +25,7 @@ function Address() {
 
     return (
         <div className="address-wrapper">
-            <div className="add-address-form-container" onClick={(e) => hideAddAddressForm(e)}>
+            <div className="add-address-form-container hide" onClick={(e) => hideAddAddressForm(e)}>
                 <form
                     className="add-address-form"
                     onSubmit={(e) => handleSubmit(e)}

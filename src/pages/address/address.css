@@ -84,16 +84,17 @@
     color: var(--primary);
     width: 100%;
     font-size: 20px;
+    box-sizing: border-box;
 }
 
 .add-address-form-container {
     position: absolute;
-    height: 100vh;
-    width: 100vw;
     background-color: rgba(24, 24, 24, 0.345);
     display: flex;
     z-index: 4;
-    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
 }
 
 .add-address-form {
@@ -120,7 +121,9 @@
 .address-form__input {
     width: 70%;
     border-radius: 10px;
-    color: var(--primary);
+    color: rgb(42, 20, 2);
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .address-form__button {

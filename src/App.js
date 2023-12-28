@@ -12,9 +12,10 @@ function App() {
     useEffect(() => {
         console.log(state);
     }, [state]);
+
     return (
         <Routes>
-            <Route path="/" element={state.login?<HomeLayout/>:<SignIn/>} />
+            <Route path="/" element={state.login ? <HomeLayout /> : <SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/payment" element={<Payment />} />
         </Routes>

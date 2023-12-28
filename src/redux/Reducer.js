@@ -43,6 +43,7 @@ const Reducer = (state, action) => {
                 ...state,
                 element: PAYMENT,
             };
+        }
 
         case LOGGED: {
             return {

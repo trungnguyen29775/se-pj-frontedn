@@ -5,6 +5,8 @@ import { RiAddFill } from 'react-icons/ri';
 import './payment.css';
 import StateContext from '../../redux/Context';
 import { getUserData } from '../../redux/Action';
+import Loading from '../../components/loadingScreen/loading';
+import Succeed from '../../components/succeed/succeed';
 
 export default function Payment() {
     const navigate = useNavigate();
@@ -18,28 +20,53 @@ export default function Payment() {
     const [town, setTown] = useState('');
     const [stateAddress, setStateAddress] = useState();
     const [city, setCity] = useState('');
-
+    const [addressData, setAddressData] = useState([]);
+    // Use Effect
     useEffect(() => {
-        if (addressState === 'succeed') {
-            navigate('/payment');
+        if (addressState === 'showNotify') {
+            setTimeout(() => {
+                setAddressState('succeed');
+                const formContainer = document.querySelector('.add-address-form-container');
+                formContainer.classList.add('hide');
+            }, 1200);
         }
     }, [addressState]);
+
+    useEffect(() =>
+        //---------------------Call API get user address----------
+        {
+            if (!state.login) navigate('/');
+            instance
+                .post('/view-address', {
+                    userId: state.userData.userId,
+                })
+                .then((response) => {
+                    setAddressData(response.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }, []);
+
+    // Function
     const handleSubmit = (event) => {
         event.preventDefault();
+        setAddressState('onAdding');
         instance
-            .post('/address', {
-                name,
-                pinCode,
-                address,
-                town,
+            .post('/add-address', {
+                name: name,
+                pinCode: pinCode,
+                address: address,
+                town: town,
                 state: stateAddress,
-                city,
+                city: city,
                 userId: state.userData.userId,
             })
             .then((res) => {
                 if (res.status === 200) {
+                    console.log('hello');
                     setTimeout(() => {
-                        console.log('succeed');
+                        setAddressState('showNotify');
                     }, 1000);
                 }
             })
@@ -47,7 +74,20 @@ export default function Payment() {
                 console.log(err);
             });
     };
-    const deleteAddress = () => {};
+    const deleteAddress = (event) => {
+        const addressId = event.target.classList[1];
+        instance
+            .post('/delete-address', {
+                addressId: addressId,
+                userId: state.userData.userId,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const handlePayment = () => {};
 
     const handleSelectAddress = (address, i) => {
@@ -89,6 +129,8 @@ export default function Payment() {
     return (
         <>
             <div className="add-address-form-container hide" onClick={(e) => hideAddAddressForm(e)}>
+                {addressState === 'onAdding' ? <Loading /> : addressState === 'showNotify' ? <Succeed /> : ''}
+
                 <form
                     className="add-address-form"
                     onSubmit={(e) => handleSubmit(e)}
@@ -161,12 +203,12 @@ export default function Payment() {
                     <div className="address">
                         <h3>Select Delivery Address</h3>
                         <div className="add-sec-area">
-                            {address1.length > 0 ? (
-                                address1.map((address, i) => (
+                            {addressData ? (
+                                addressData.map((address, i) => (
                                     <div
                                         onClick={() => handleSelectAddress(address, i)}
                                         className={`og-add ${selected === i && 'selected'}`}
-                                        key={i}
+                                        key={address.address_id}
                                     >
                                         <p>{address.name}</p>
                                         <span>
@@ -180,7 +222,10 @@ export default function Payment() {
                                             {address.mobNo}
                                         </span>
                                         <div className="btns">
-                                            <button className="btn" onClick={() => deleteAddress(address._id)}>
+                                            <button
+                                                className={`btn ${address.address_id}`}
+                                                onClick={(e) => deleteAddress(e)}
+                                            >
                                                 Remove
                                             </button>
                                         </div>
