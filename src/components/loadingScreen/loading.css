@@ -6,6 +6,7 @@
     position: absolute;
     opacity: 0.5;
     display: flex;
+    z-index: 3;
 }
 
 .loader {

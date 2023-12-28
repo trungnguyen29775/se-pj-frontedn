@@ -1,4 +1,4 @@
-import { ADDRESS, GET_USER_DATA, HOME, LOGGED, LOGOUT, ORDER, SETTING } from '../constant/constant.redux';
+import { ADDRESS, GET_USER_DATA, HOME, LOGGED, LOGOUT, ORDER, PAYMENT, SETTING } from '../constant/constant.redux';
 
 export const initState = {
     login: false,
@@ -35,6 +35,13 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 userData: action.payload,
+            };
+        }
+
+        case PAYMENT: {
+            return {
+                ...state,
+                element: PAYMENT,
             };
         }
 

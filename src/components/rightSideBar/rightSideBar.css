@@ -1,11 +1,12 @@
 .right-side-bar-wrapper {
-    width: 30%;
     height: 100%;
     align-items: flex-end;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 10px 20px;
+    overflow: hidden;
+    width: 450px;
 }
 
 .right-side-bar-header {
