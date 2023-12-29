@@ -75,7 +75,7 @@
     font-weight: bold;
 }
 
-.add-address {
+.add-address__button {
     padding: 20px;
     border: 1px dashed rgb(163, 163, 163);
     background: #fff;

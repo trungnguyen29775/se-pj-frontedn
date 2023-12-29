@@ -7,6 +7,7 @@ export const initState = {
         name: '',
         email: '',
         userId: '',
+        isAdmin: '',
     },
 };
 
@@ -35,13 +36,6 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 userData: action.payload,
-            };
-        }
-
-        case PAYMENT: {
-            return {
-                ...state,
-                element: PAYMENT,
             };
         }
 

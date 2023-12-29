@@ -4,7 +4,7 @@ function Succeed() {
     return (
         <div className="succeed-wrapper">
             <div className="succeed-notify">
-                <span>Add address succeed!</span>
+                <span>Succeed!</span>
             </div>
         </div>
     );
