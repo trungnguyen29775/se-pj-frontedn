@@ -8,6 +8,9 @@ import {
     SETTING,
     PAYMENT,
     FAVORITE,
+    GET_FAVORITE_DATA,
+    ADD_FAVORITE,
+    DELETE_FAVORITE,
 } from '../constant/constant.redux';
 
 export const navSetting = () => {
@@ -63,5 +66,26 @@ export const navPayment = () => {
 export const navFavorite = () => {
     return {
         type: FAVORITE,
+    };
+};
+
+export const getFavoriteData = (payload) => {
+    return {
+        type: GET_FAVORITE_DATA,
+        payload: payload,
+    };
+};
+
+export const addFavorite = (payload) => {
+    return {
+        type: ADD_FAVORITE,
+        payload: payload,
+    };
+};
+
+export const deleteFavorite = (payload) => {
+    return {
+        type: DELETE_FAVORITE,
+        payload: payload,
     };
 };

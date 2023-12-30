@@ -7,13 +7,14 @@ import StateContext from '../../redux/Context';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa';
 import { FAVORITE, HOME } from '../../constant/constant.redux';
-import { navFavorite, navHome } from '../../redux/Action';
+import { addFavorite, deleteFavorite, navFavorite, navHome } from '../../redux/Action';
 
 function TypleList(props) {
     const [data, setData] = useState({});
     const [state, dispatchState] = useContext(StateContext);
     useEffect(() => {
         setData(props.data);
+        console.log(props.data);
     }, [props]);
 
     const handleDeleteProduct = (e) => {
@@ -36,7 +37,7 @@ function TypleList(props) {
                 productId: data.product_id,
             })
             .then((response) => {
-                console.log(response.data);
+                if (response.data === 200) dispatchState(addFavorite(data));
             })
             .catch((err) => {
                 console.log(err);
@@ -51,7 +52,7 @@ function TypleList(props) {
                 productId: data.product_id,
             })
             .then((response) => {
-                dispatchState(navFavorite(e));
+                if (response.status === 200) dispatchState(deleteFavorite(data));
             })
             .catch((err) => {
                 console.log(err);

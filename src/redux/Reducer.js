@@ -1,6 +1,10 @@
+import { act } from 'react-dom/test-utils';
 import {
     ADDRESS,
+    ADD_FAVORITE,
+    DELETE_FAVORITE,
     FAVORITE,
+    GET_FAVORITE_DATA,
     GET_USER_DATA,
     HOME,
     LOGGED,
@@ -18,6 +22,7 @@ export const initState = {
         email: '',
         userId: '',
         isAdmin: '',
+        favorite: [],
     },
 };
 
@@ -69,6 +74,38 @@ const Reducer = (state, action) => {
                 element: FAVORITE,
             };
         }
+        case GET_FAVORITE_DATA: {
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    favorite: action.payload,
+                },
+            };
+        }
+        case ADD_FAVORITE: {
+            console.log(action.payload);
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    favorite: [...state.userData.favorite, action.payload],
+                },
+            };
+        }
+        case DELETE_FAVORITE: {
+            const targetIndex = state.userData.favorite.indexOf(action.payload);
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    favorite: state.userData.favorite
+                        .slice(0, targetIndex)
+                        .concat(state.userData.favorite.slice(targetIndex + 1, state.userData.favorite.length)),
+                },
+            };
+        }
+
         default: {
             console.log('Hello');
             return state;
