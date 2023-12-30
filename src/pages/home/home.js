@@ -42,13 +42,15 @@ function Home() {
                 break;
         }
     };
-    instance
-        .post('/view-products', {})
-        .then((res) => {
-            setProducts(res.data);
-        })
-        .then()
-        .catch((err) => console.log(err));
+    useState(() => {
+        instance
+            .post('/view-products', {})
+            .then((res) => {
+                setProducts(res.data);
+            })
+            .then()
+            .catch((err) => console.log(err));
+    });
     return (
         <div className="home-wrapper">
             <Header />
@@ -113,7 +115,7 @@ function Home() {
                     </div>
                     <div className="type-list-container">
                         {products
-                            .filter((product) => product.type == type)
+                            .filter((product) => product.type === type)
                             .map((item, key) => (
                                 <TypleList data={item} type={item.type} key={key} />
                             ))}
