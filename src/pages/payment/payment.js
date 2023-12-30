@@ -213,10 +213,15 @@ export default function Payment() {
                                     >
                                         <p>{address.name}</p>
                                         <span>
-                                            {address.address},{address.town}
+                                            <b>Address :</b>
+                                            {address.address},<b>Town :</b>
+                                            {address.town}
                                         </span>
                                         <span>
-                                            {address.city},{address.state} -{address.pinCode}{' '}
+                                            <b>City :</b>
+                                            {address.city},<b>State :</b>
+                                            {address.state} -<b>Pin code :</b>
+                                            {address.pinCode}{' '}
                                         </span>
                                         <span>
                                             <b>Mobile No:</b>
