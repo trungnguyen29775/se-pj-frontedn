@@ -18,6 +18,7 @@
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    position: relative;
 }
 
 .type-list-element:hover {
@@ -70,4 +71,18 @@
 .add-food:hover {
     background-color: var(--secondary);
     cursor: pointer;
+}
+
+.delete-product-button {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background-color: var(--danger);
+    height: 30px;
+    width: 30px;
+    font-size: 12px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    font-weight: 700;
 }

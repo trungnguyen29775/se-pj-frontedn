@@ -27,10 +27,7 @@ const Reducer = (state, action) => {
         }
 
         case LOGOUT: {
-            return {
-                ...state,
-                login: false,
-            };
+            return initState;
         }
         case GET_USER_DATA: {
             return {

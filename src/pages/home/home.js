@@ -12,45 +12,50 @@ function Home() {
     const [products, setProducts] = useState([]);
     const [state, setState] = useContext(StateContext);
     const foodList = document.querySelectorAll('.menu-type');
-    const [type, setType] = useState('pizza');
+    const [type, setType] = useState('Pizza');
     const [active, setActive] = useState(0);
+
+    useEffect(() => {
+        console.log(products);
+    }, [products]);
+
+    useEffect(() => {
+        instance
+            .get('/view-product')
+            .then((response) => {
+                if (response.status === 200) setProducts(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
     const handleFoodType = (i) => {
-        const active = document.querySelector('.active');
+        const active = document.querySelector('.menu-type.active');
         active.classList.remove('active');
         foodList[i].classList.add('active');
         switch (i) {
             case 0:
-                setType('pizza');
+                setType('Pizza');
                 break;
             case 1:
-                setType('burger');
+                setType('Burger');
                 break;
             case 2:
-                setType('sandwich');
+                setType('Sandwich');
                 break;
             case 3:
-                setType('smoothy');
+                setType('Smoothy');
                 break;
             case 4:
-                setType('snack');
+                setType('Snack');
                 break;
             case 5:
-                setType('drink');
+                setType('Drink');
                 break;
             default:
-                setType('pizza');
+                setType('Pizza');
                 break;
         }
     };
-    useState(() => {
-        instance
-            .post('/view-products', {})
-            .then((res) => {
-                setProducts(res.data);
-            })
-            .then()
-            .catch((err) => console.log(err));
-    });
     return (
         <div className="home-wrapper">
             <Header />
@@ -115,9 +120,9 @@ function Home() {
                     </div>
                     <div className="type-list-container">
                         {products
-                            .filter((product) => product.type === type)
+                            .filter((product) => product.type.toLowerCase() === type.toLowerCase())
                             .map((item, key) => (
-                                <TypleList data={item} type={item.type} key={key} />
+                                <TypleList data={item} key={key} />
                             ))}
                     </div>
                 </div>
