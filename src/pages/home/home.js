@@ -15,7 +15,7 @@ function Home() {
     const [type, setType] = useState('pizza');
     const [active, setActive] = useState(0);
     const handleFoodType = (i) => {
-        const active = document.querySelector('.active');
+        const active = document.querySelector('.menu-type.active');
         active.classList.remove('active');
         foodList[i].classList.add('active');
         switch (i) {
@@ -38,7 +38,6 @@ function Home() {
                 setType('drink');
                 break;
             default:
-                setType('pizza');
                 break;
         }
     };
