@@ -47,6 +47,7 @@ export default function Payment() {
                     console.log(err);
                 });
         }, []);
+        
 
     // Function
     const handleSubmit = (event) => {

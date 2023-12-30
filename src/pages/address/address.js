@@ -50,7 +50,7 @@ function Address() {
                 <div className="address-list-container">
                     <div className="add-address-container">
                         <span className="address-notify">No Address found! Add one</span>
-                        <button className="add-address" onClick={(e) => handleShowAddAddressForm(e)}>
+                        <button className="add-address__button" onClick={(e) => handleShowAddAddressForm(e)}>
                             Add Address
                         </button>
                     </div>
