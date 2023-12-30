@@ -1,4 +1,14 @@
-import { ADDRESS, GET_USER_DATA, HOME, LOGGED, LOGOUT, ORDER, PAYMENT, SETTING } from '../constant/constant.redux';
+import {
+    ADDRESS,
+    FAVORITE,
+    GET_USER_DATA,
+    HOME,
+    LOGGED,
+    LOGOUT,
+    ORDER,
+    PAYMENT,
+    SETTING,
+} from '../constant/constant.redux';
 
 export const initState = {
     login: false,
@@ -51,6 +61,12 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 element: ADDRESS,
+            };
+        }
+        case FAVORITE: {
+            return {
+                ...state,
+                element: FAVORITE,
             };
         }
         default: {

@@ -4,6 +4,10 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { useContext, useEffect, useState } from 'react';
 import instance from '../../axios/instance';
 import StateContext from '../../redux/Context';
+import { FaRegHeart } from 'react-icons/fa6';
+import { FaHeart } from 'react-icons/fa';
+import { FAVORITE, HOME } from '../../constant/constant.redux';
+import { navFavorite, navHome } from '../../redux/Action';
 
 function TypleList(props) {
     const [data, setData] = useState({});
@@ -24,12 +28,50 @@ function TypleList(props) {
             });
     };
 
+    const handleAddFavorite = (e) => {
+        e.stopPropagation();
+        instance
+            .post('/add-favorite', {
+                userId: state.userData.userId,
+                productId: data.product_id,
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const handleDeleteFavorite = (e) => {
+        e.stopPropagation();
+        instance
+            .post('/delete-favorite', {
+                userId: state.userData.userId,
+                productId: data.product_id,
+            })
+            .then((response) => {
+                dispatchState(navFavorite(e));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <div className="type-list-element">
             {state.login ? (
                 state.userData.isAdmin == '1' ? (
                     <div className="delete-product-button" onClick={(e) => handleDeleteProduct(e)}>
                         <span style={{ margin: 'auto' }}>X</span>
+                    </div>
+                ) : state.element === HOME ? (
+                    <div className="favorite-product-button" onClick={(e) => handleAddFavorite(e)}>
+                        <FaRegHeart style={{ margin: 'auto' }} />
+                    </div>
+                ) : state.element === FAVORITE ? (
+                    <div className="favorite-product-button" onClick={(e) => handleDeleteFavorite(e)}>
+                        <FaHeart style={{ margin: 'auto' }} />
                     </div>
                 ) : (
                     ''

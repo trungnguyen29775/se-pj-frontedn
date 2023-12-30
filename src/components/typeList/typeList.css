@@ -86,3 +86,18 @@
     display: flex;
     font-weight: 700;
 }
+
+.favorite-product-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: transparent;
+    background-color: rgba(241, 115, 115, 0.34);
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+    border-radius: 50%;
+    color: var(--danger);
+    display: flex;
+    font-weight: 700;
+}
