@@ -25,14 +25,21 @@ function Favorite() {
     return (
         <div className="favorite-wrapper">
             <Header />
-            <div className="favorite-content-container">
-                <span className="favorite-content-header">My Favorite</span>
-                <div className="type-list-container">
-                    {favoriteData.map((item, index) => {
-                        return <TypleList data={item} key={index} nav={'favorite'} />;
-                    })}
+            {state.login ? (
+                <div className="favorite-content-container">
+                    <span className="favorite-content-header">My Favorite</span>
+                    <div className="type-list-container">
+                        {favoriteData.map((item, index) => {
+                            return <TypleList data={item} key={index} nav={'favorite'} />;
+                        })}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="no-user">
+                    <h1>You are not Logged In!,Please Login</h1>
+                    <button>Login</button>
+                </div>
+            )}
         </div>
     );
 }

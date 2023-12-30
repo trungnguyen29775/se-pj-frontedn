@@ -146,51 +146,58 @@ function Address() {
                 </form>
             </div>
             <Header />
-            <div className="address-content">
-                <span className="address-header">Your Address</span>
-                <div className="address-list-container">
-                    <div className="add-address-container">
-                        <span className="address-notify">No Address found! Add one</span>
-                        <button className="add-address__button" onClick={(e) => handleShowAddAddressForm(e)}>
-                            Add Address
-                        </button>
-                    </div>
-                    <div className="address-list">
-                        {addressData ? (
-                            addressData.map((address, i) => (
-                                <div className="og-add" key={address.address_id}>
-                                    <p>{address.name}</p>
-                                    <span>
-                                        <b>Address :</b>
-                                        {address.address},<b>Town :</b>
-                                        {address.town}
-                                    </span>
-                                    <span>
-                                        <b>City :</b>
-                                        {address.city},<b>State :</b>
-                                        {address.state} -<b>Pin code :</b>
-                                        {address.pinCode}{' '}
-                                    </span>
-                                    <span>
-                                        <b>Mobile No:</b>
-                                        {address.mobNo}
-                                    </span>
-                                    <div className="btns">
-                                        <button
-                                            className={`btn ${address.address_id}`}
-                                            onClick={(e) => deleteAddress(e)}
-                                        >
-                                            Remove
-                                        </button>
+            {state.login ? (
+                <div className="address-content">
+                    <span className="address-header">Your Address</span>
+                    <div className="address-list-container">
+                        <div className="add-address-container">
+                            <span className="address-notify">No Address found! Add one</span>
+                            <button className="add-address__button" onClick={(e) => handleShowAddAddressForm(e)}>
+                                Add Address
+                            </button>
+                        </div>
+                        <div className="address-list">
+                            {addressData ? (
+                                addressData.map((address, i) => (
+                                    <div className="og-add" key={address.address_id}>
+                                        <p>{address.name}</p>
+                                        <span>
+                                            <b>Address :</b>
+                                            {address.address},<b>Town :</b>
+                                            {address.town}
+                                        </span>
+                                        <span>
+                                            <b>City :</b>
+                                            {address.city},<b>State :</b>
+                                            {address.state} -<b>Pin code :</b>
+                                            {address.pinCode}{' '}
+                                        </span>
+                                        <span>
+                                            <b>Mobile No:</b>
+                                            {address.mobNo}
+                                        </span>
+                                        <div className="btns">
+                                            <button
+                                                className={`btn ${address.address_id}`}
+                                                onClick={(e) => deleteAddress(e)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))
-                        ) : (
-                            <h3 style={{ padding: '20px 0' }}>No Address found! Add one</h3>
-                        )}
+                                ))
+                            ) : (
+                                <h3 style={{ padding: '20px 0' }}>No Address found! Add one</h3>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <div className="no-user">
+                    <h1>You are not Logged In!,Please Login</h1>
+                    <button>Login</button>
+                </div>
+            )}
         </div>
     );
 }
