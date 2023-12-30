@@ -4,10 +4,10 @@ import {
     GET_ADDRESS_DATA,
     HOME,
     LOGGED,
-    LOGGED_IN,
     ORDER,
     SETTING,
     PAYMENT,
+    FAVORITE,
 } from '../constant/constant.redux';
 
 export const navSetting = () => {
@@ -57,5 +57,11 @@ export const navAddress = () => {
 export const navPayment = () => {
     return {
         type: PAYMENT,
+    };
+};
+
+export const navFavorite = () => {
+    return {
+        type: FAVORITE,
     };
 };

@@ -7,8 +7,9 @@ import Setting from '../../pages/setting/Setting';
 import StateContext from '../../redux/Context';
 
 import Order from '../../pages/order/order';
-import { ADDRESS, HOME, ORDER, SETTING } from '../../constant/constant.redux';
+import { ADDRESS, FAVORITE, HOME, ORDER, SETTING } from '../../constant/constant.redux';
 import Address from '../../pages/address/address';
+import Favorite from '../../pages/favorite/favorite';
 
 function HomeLayout() {
     const [state, setState] = useContext(StateContext);
@@ -24,6 +25,8 @@ function HomeLayout() {
                 <Order />
             ) : state.element === ADDRESS ? (
                 <Address />
+            ) : state.element === FAVORITE ? (
+                <Favorite />
             ) : (
                 ''
             )}
