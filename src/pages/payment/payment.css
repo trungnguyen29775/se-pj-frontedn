@@ -20,7 +20,7 @@
     justify-content: center;
     width: 80%;
 }
-.address {
+.address-container {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

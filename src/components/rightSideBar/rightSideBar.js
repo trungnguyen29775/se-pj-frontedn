@@ -9,6 +9,7 @@ import { navPayment, getUserData } from '../../redux/Action';
 import instance from '../../axios/instance';
 import Loading from '../loadingScreen/loading';
 import Succeed from '../succeed/succeed';
+import { FaAngleLeft } from 'react-icons/fa';
 
 function RightSideBar() {
     const navigate = useNavigate();
@@ -60,6 +61,11 @@ function RightSideBar() {
         navigate('/payment');
     };
 
+    const hanldeOnClickLeft = () => {
+        const right = document.querySelector('.right-side-bar-wrapper');
+        right.classList.remove('display-block');
+    };
+
     // Use Effect
     useEffect(() => {
         if (addFoodState === 'addFoodNotify') {
@@ -105,6 +111,9 @@ function RightSideBar() {
         <div className="right-side-bar-wrapper">
             {addFoodState === 'onAdding' ? <Loading /> : addFoodState === 'addFoodNotify' ? <Succeed /> : ''}
             <div className="right-side-bar-header">
+                <div className="left-arrow-icon" onClick={hanldeOnClickLeft}>
+                    <FaAngleLeft fontSize={'25px'} />
+                </div>
                 {state.login ? (
                     <img src="/image/default-avt-image.jpg" />
                 ) : (
@@ -184,7 +193,7 @@ function RightSideBar() {
                                 <span>Quantity: 18</span>
                                 <div className="edit-order-container">
                                     <button>
-                                        <span style={{ margin: 'auto' }}>-</span>
+                                        <span style={{ margin: 'auto' }}> -</span>
                                     </button>
                                     <span>18</span>
                                     <button>

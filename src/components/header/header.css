@@ -28,3 +28,20 @@
     font-size: 14px;
     font-weight: 500;
 }
+.left-side-bar-icon,
+.right-side-bar-icon {
+    display: none;
+    text-align: center;
+    padding: 8px;
+    color: #f49001;
+}
+
+@media only screen and (max-width: 600px) {
+    .left-side-bar-icon,
+    .right-side-bar-icon {
+        display: block;
+    }
+    .logo__img {
+        display: none;
+    }
+}

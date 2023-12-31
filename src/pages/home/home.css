@@ -132,3 +132,28 @@
     height: 30px;
     width: 30px;
 }
+
+@media only screen and (max-width: 600px) {
+    .home-wrapper {
+        margin-left: 0;
+    }
+    .home-welcom__img {
+        display: none;
+    }
+    .menu-type {
+        width: 50px;
+        height: 50px;
+        margin: 2px 4px;
+    }
+    .menu-type-image-container {
+        padding: 0;
+        margin: 0;
+    }
+    .home-content-container img {
+        width: 20px;
+        height: 20px;
+    }
+    .home-content-container span {
+        font-size: 12px;
+    }
+}

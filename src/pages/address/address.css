@@ -137,3 +137,8 @@
 .add-address-form-container.hide {
     display: none;
 }
+@media only screen and (max-width: 600px) {
+    .address-wrapper {
+        margin-left: 0;
+    }
+}

@@ -47,7 +47,6 @@ export default function Payment() {
                     console.log(err);
                 });
         }, []);
-        
 
     // Function
     const handleSubmit = (event) => {
@@ -201,7 +200,7 @@ export default function Payment() {
             </div>
             <div className="payment">
                 <div className="shipping-details">
-                    <div className="address">
+                    <div className="address-container">
                         <h3>Select Delivery Address</h3>
                         <div className="add-sec-area">
                             {addressData ? (

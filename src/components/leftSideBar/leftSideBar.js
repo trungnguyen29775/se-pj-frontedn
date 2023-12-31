@@ -51,19 +51,19 @@ function LeftSideBar() {
         <div className="left-side-container">
             <div className="left-side-navigate-container">
                 <div className="left-side-navigate-icon-container home active " onClick={(e) => handleLeftSideNav(e)}>
-                    <FaHome style={{ margin: 'auto' }} />
+                    <FaHome />
                 </div>
                 <div className="left-side-navigate-icon-container order" onClick={(e) => handleLeftSideNav(e)}>
-                    <FaBoxOpen style={{ margin: 'auto' }} />
+                    <FaBoxOpen />
                 </div>
                 <div className="left-side-navigate-icon-container favorite" onClick={(e) => handleLeftSideNav(e)}>
-                    <IoIosHeartHalf style={{ margin: 'auto' }} />
+                    <IoIosHeartHalf />
                 </div>
                 <div className="left-side-navigate-icon-container address" onClick={(e) => handleLeftSideNav(e)}>
-                    <FaRegFileAlt style={{ margin: 'auto' }} />
+                    <FaRegFileAlt />
                 </div>
                 <div className="left-side-navigate-icon-container setting" onClick={(e) => handleLeftSideNav(e)}>
-                    <IoSettingsOutline style={{ margin: 'auto' }} />
+                    <IoSettingsOutline />
                 </div>
             </div>
             <div className="left-side-navigate-icon-container logout" onClick={(e) => handleLogOut(e)}>
