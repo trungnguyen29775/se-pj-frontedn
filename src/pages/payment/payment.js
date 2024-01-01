@@ -13,7 +13,6 @@ function Payment() {
     const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
     const [selected, setSelected] = useState(0);
-    const [selectedAddress, setSelectedAddress] = useState({});
     const [paymentMethod, setPaymentMethod] = useState('COD');
     const [state, dispatchState] = useContext(StateContext);
     const [products, setProducts] = useState([]);
@@ -27,6 +26,7 @@ function Payment() {
     const [city, setCity] = useState('');
     const [addressData, setAddressData] = useState([]);
     const [createdOrder, setCreatedOrder] = useState([]);
+    // const [selectedAddress, setSelectedAddress] = useState([]);
     // Use Effect
     useEffect(() => {
         if (addressState === 'showNotify') {
@@ -134,6 +134,7 @@ function Payment() {
     const handlePayment = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        const selectedAddress = addressData[selected];
         instance
             .post('/create-order', {
                 userId: state.userData.userId,
@@ -154,11 +155,13 @@ function Payment() {
             .catch((err) => {
                 console.log(err);
             });
+
+        navigate('/');
     };
 
     const handleSelectAddress = (address, i) => {
         setSelected(i);
-        setSelectedAddress(address);
+        // setSelectedAddress(address);
     };
     const hideAddAddressForm = (event) => {
         event.preventDefault();
