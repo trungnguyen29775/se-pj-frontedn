@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import {
     ADDRESS,
     GET_USER_DATA,
@@ -8,6 +9,10 @@ import {
     SETTING,
     PAYMENT,
     FAVORITE,
+    PLUS_ORDER,
+    MINUS_ORDER,
+    ADD_ORDER,
+    CANCEL_ORDER,
 } from '../constant/constant.redux';
 
 export const navSetting = () => {
@@ -63,5 +68,33 @@ export const navPayment = () => {
 export const navFavorite = () => {
     return {
         type: FAVORITE,
+    };
+};
+
+export const addOrder = (payload) => {
+    return {
+        type: ADD_ORDER,
+        payload,
+    };
+};
+
+export const plusOrder = (payload) => {
+    return {
+        type: PLUS_ORDER,
+        payload,
+    };
+};
+
+export const minusOrder = (payload) => {
+    return {
+        type: MINUS_ORDER,
+        payload,
+    };
+};
+
+export const cancelOrder = (payload) => {
+    return {
+        type: CANCEL_ORDER,
+        payload,
     };
 };

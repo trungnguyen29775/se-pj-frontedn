@@ -8,3 +8,7 @@ export const LOGGED = 'LOGGED';
 export const ORDER = 'ORDER';
 export const ADDRESS = 'ADDRESS';
 export const PAYMENT = 'PAYMENT';
+export const ADD_ORDER = 'ADD_ORDER';
+export const PLUS_ORDER = 'PLUS_ORDER';
+export const MINUS_ORDER = 'MINUS_ORDER';
+export const CANCEL_ORDER = 'CANCEL_ORDER';
