@@ -7,7 +7,7 @@ import StateContext from '../../redux/Context';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa';
 import { FAVORITE, HOME } from '../../constant/constant.redux';
-import { navFavorite, navHome, orderProduct } from '../../redux/Action';
+import { addOrder, navFavorite, navHome } from '../../redux/Action';
 
 function TypleList(props) {
     const [data, setData] = useState({});
@@ -59,11 +59,7 @@ function TypleList(props) {
 
     const handleAddFood = (e) => {
         e.stopPropagation();
-        if (state.orderData.hasOwnProperty(data.product_id)) {
-            dispatchState(orderProduct(data.product_id, state.orderData[data.product_id] + 1));
-        } else {
-            dispatchState(orderProduct(data.product_id, 1));
-        }
+        dispatchState(addOrder(data));
     };
 
     return (

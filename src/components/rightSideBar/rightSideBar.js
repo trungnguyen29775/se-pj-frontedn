@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import StateContext from '../../redux/Context';
-import { navPayment, getUserData, orderProduct } from '../../redux/Action';
+import { navPayment, getUserData, plusOrder, minusOrder, cancelOrder } from '../../redux/Action';
 import instance from '../../axios/instance';
 import Loading from '../loadingScreen/loading';
 import Succeed from '../succeed/succeed';
@@ -59,20 +59,15 @@ function RightSideBar() {
         dispatchState(navPayment());
         navigate('/payment');
     };
-    const handlePlusProduct = (key) => {
-        dispatchState(orderProduct(key, state.orderData[key] + 1));
+    const handlePlusProduct = (data) => {
+        dispatchState(plusOrder(data));
     };
-    const handleCancelProduct = (key) => {
-        if (state.orderData[key]) delete state.orderData[key];
+    const handleCancelProduct = (data) => {
+        dispatchState(cancelOrder(data));
     };
-    const handleMinusProduct = (key) => {
-        if (state.orderData[key]) {
-            if (state.orderData[key] === 1) {
-                delete state.orderData[key];
-            } else {
-                dispatchState(orderProduct(key, state.orderData[key] - 1));
-            }
-        }
+
+    const handleMinusProduct = (data) => {
+        dispatchState(minusOrder(data));
     };
 
     useEffect(() => {
@@ -97,7 +92,7 @@ function RightSideBar() {
         event.preventDefault();
         setAddFoodState('onAdding');
         instance
-            .post('/add-product', {
+            .post('/add-products', {
                 name: nameFood,
                 type: typeFood,
                 price: priceFood,
@@ -198,25 +193,24 @@ function RightSideBar() {
                         <span className="view-all">View All</span>
                     </div>
                     <div className="right-side-bar-order-list">
-                        {Object.entries(state.orderData).map(([key, val]) => {
-                            console.log(products);
+                        {state.orderData?.map((item, index) => {
                             return (
-                                <div className="order">
+                                <div className="order" key={index}>
                                     <div className="order-img-container">
-                                        <img src="/image/pizza/pizza1.jpg" />
+                                        <img src={item.image_path} />
                                     </div>
                                     <div className="order-detail">
-                                        <span className="order-detail-header">{products[key - 1].name}</span>
-                                        <span>Quantity: {val}</span>
+                                        <span className="order-detail-header">{item.name}</span>
+                                        <span>Quantity: {item.countInStock}</span>
                                         <div className="edit-order-container">
-                                            <button onClick={() => handleMinusProduct(key)}>
+                                            <button onClick={() => handleMinusProduct(item)}>
                                                 <span style={{ margin: 'auto' }}>-</span>
                                             </button>
-                                            <span>{val}</span>
-                                            <button onClick={() => handlePlusProduct(key)}>
+                                            <span>{item ? item.cout : ''}</span>
+                                            <button onClick={() => handlePlusProduct(item)}>
                                                 <span style={{ margin: 'auto' }}>+</span>
                                             </button>
-                                            <button className="danger" onClick={() => handleCancelProduct(key)}>
+                                            <button className="danger" onClick={() => handleCancelProduct(item)}>
                                                 <FaTrashAlt style={{ margin: 'auto' }} />
                                             </button>
                                         </div>
@@ -224,6 +218,7 @@ function RightSideBar() {
                                 </div>
                             );
                         })}
+
                         {Object.keys(state.orderData).toString() && (
                             <button className="right-side-bar-payment__button" onClick={(e) => handlePaymentClick(e)}>
                                 PROCEED TO CHECKOUT
