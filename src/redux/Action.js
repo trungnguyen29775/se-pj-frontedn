@@ -73,3 +73,52 @@ export const navFavorite = () => {
         type: FAVORITE,
     };
 };
+
+export const addFavorite = (payload) => {
+    return {
+        type: ADD_FAVORITE,
+        payload,
+    };
+};
+
+export const removeFavorite = (payload) => {
+    return {
+        type: REMOVE_FAVORITE,
+        payload,
+    };
+};
+
+export const getFavoriteData = (payload) => {
+    return {
+        type: GET_FAVORITE_DATA,
+        payload,
+    };
+};
+
+export const addOrder = (payload) => {
+    return {
+        type: ADD_ORDER,
+        payload,
+    };
+};
+
+export const plusOrder = (payload) => {
+    return {
+        type: PLUS_ORDER,
+        payload,
+    };
+};
+
+export const minusOrder = (payload) => {
+    return {
+        type: MINUS_ORDER,
+        payload,
+    };
+};
+
+export const cancelOrder = (payload) => {
+    return {
+        type: CANCEL_ORDER,
+        payload,
+    };
+};

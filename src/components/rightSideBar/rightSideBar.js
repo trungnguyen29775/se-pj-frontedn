@@ -13,7 +13,6 @@ import Succeed from '../succeed/succeed';
 function RightSideBar() {
     const navigate = useNavigate();
     const [state, dispatchState] = useContext(StateContext);
-    const [products, setProducts] = useState([]);
     const [nameFood, setNameFood] = useState('');
     const [typeFood, setTypeFood] = useState('');
     const [priceFood, setPriceFood] = useState('');
@@ -69,15 +68,6 @@ function RightSideBar() {
     const handleMinusProduct = (data) => {
         dispatchState(minusOrder(data));
     };
-
-    useEffect(() => {
-        instance
-            .get('/view-products')
-            .then((response) => {
-                if (response.status === 200) setProducts(response.data);
-            })
-            .catch((err) => console.log(err));
-    }, []);
 
     // Use Effect
     useEffect(() => {
