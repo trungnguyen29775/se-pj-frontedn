@@ -1,0 +1,12 @@
+.order-list-element {
+    width: 100%;
+    background-color: #fff;
+    margin: 16px 0;
+    padding: 16px;
+    border-radius: 5px;
+    box-shadow: 5px 10px #888888;
+}
+.order-detail-item {
+    display: flex;
+    justify-content: space-between;
+}
