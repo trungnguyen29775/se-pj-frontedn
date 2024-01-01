@@ -6,6 +6,7 @@ import instance from '../../axios/instance';
 import StateContext from '../../redux/Context';
 import { LOGGED } from '../../constant/constant.redux';
 import { getUserData } from '../../redux/Action';
+import Loading from '../../components/loadingScreen/loading';
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function SignIn() {
 
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
-
+    const [signInState, setSignInState] = useState('');
     // Use Effect
     useEffect(() => {
         if (state.login) navigate('/');
@@ -27,8 +28,15 @@ export default function SignIn() {
                 password: loginPassword,
             })
             .then((response) => {
-                dispatchState(getUserData(response.data));
-                dispatchState({ type: LOGGED });
+                setSignInState('onSignIn');
+
+                if (response.status === 200) {
+                    setTimeout(() => {
+                        setSignInState('succeed');
+                    }, 1000);
+                    dispatchState(getUserData(response.data));
+                    dispatchState({ type: LOGGED });
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -45,6 +53,7 @@ export default function SignIn() {
 
     return (
         <div className="auth">
+            {signInState === 'onSignIn' ? <Loading /> : ''}
             <div className="form-container">
                 <div className="logo">
                     <img src="https://cdn-icons-png.flaticon.com/512/4039/4039232.png" alt="" />

@@ -21,7 +21,7 @@ function Home() {
 
     useEffect(() => {
         instance
-            .get('/view-product')
+            .get('/view-products')
             .then((response) => {
                 if (response.status === 200) setProducts(response.data);
             })
