@@ -130,6 +130,7 @@ function Payment() {
         e.preventDefault();
         instance
             .post('/create-order', {
+                userId: state.userData.userId,
                 paymentMethod: paymentMethod,
                 shippingPrice: 50000,
                 totalPrice: totalPrice,

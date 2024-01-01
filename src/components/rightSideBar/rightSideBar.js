@@ -199,14 +199,15 @@ function RightSideBar() {
                     </div>
                     <div className="right-side-bar-order-list">
                         {Object.entries(state.orderData).map(([key, val]) => {
-                            console.log(products);
                             return (
                                 <div className="order">
                                     <div className="order-img-container">
                                         <img src="/image/pizza/pizza1.jpg" />
                                     </div>
                                     <div className="order-detail">
-                                        <span className="order-detail-header">{products[key - 1].name}</span>
+                                        <span className="order-detail-header">
+                                            {products[key - 1] ? products[key - 1].name : ''}
+                                        </span>
                                         <span>Quantity: {val}</span>
                                         <div className="edit-order-container">
                                             <button onClick={() => handleMinusProduct(key)}>
