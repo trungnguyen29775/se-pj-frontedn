@@ -206,7 +206,7 @@ function RightSideBar() {
                                             <button onClick={() => handleMinusProduct(item)}>
                                                 <span style={{ margin: 'auto' }}>-</span>
                                             </button>
-                                            <span>{item ? item.cout : ''}</span>
+                                            <span>{item.count}</span>
                                             <button onClick={() => handlePlusProduct(item)}>
                                                 <span style={{ margin: 'auto' }}>+</span>
                                             </button>
