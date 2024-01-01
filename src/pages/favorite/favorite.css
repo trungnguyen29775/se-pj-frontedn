@@ -19,3 +19,9 @@
     font-size: 20px;
     font-weight: 600;
 }
+
+.favorite-no-data-notify-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

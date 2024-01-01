@@ -8,3 +8,6 @@ export const LOGGED = 'LOGGED';
 export const ORDER = 'ORDER';
 export const ADDRESS = 'ADDRESS';
 export const PAYMENT = 'PAYMENT';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const GET_FAVORITE_DATA = 'GET_FAVORITE_DATA';
