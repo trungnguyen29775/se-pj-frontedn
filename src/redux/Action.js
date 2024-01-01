@@ -8,6 +8,7 @@ import {
     SETTING,
     PAYMENT,
     FAVORITE,
+    ORDER_PRODUCT,
 } from '../constant/constant.redux';
 
 export const navSetting = () => {
@@ -63,5 +64,13 @@ export const navPayment = () => {
 export const navFavorite = () => {
     return {
         type: FAVORITE,
+    };
+};
+
+export const orderProduct = (name, quantity) => {
+    return {
+        type: ORDER_PRODUCT,
+        name: name,
+        quantity: quantity,
     };
 };

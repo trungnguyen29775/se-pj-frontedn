@@ -8,10 +8,15 @@ import { getUserData } from '../../redux/Action';
 import Loading from '../../components/loadingScreen/loading';
 import Succeed from '../../components/succeed/succeed';
 
-export default function Payment() {
+function Payment() {
+    const deliveryPrice = 50000;
+    let totalPrice = deliveryPrice;
     const navigate = useNavigate();
     const [selected, setSelected] = useState(0);
+    const [selectedAddress, setSelectedAddress] = useState([]);
+    const [paymentMethod, setPaymentMethod] = useState('');
     const [state, dispatchState] = useContext(StateContext);
+    const [products, setProducts] = useState([]);
     const [addressState, setAddressState] = useState('');
     const [name, setName] = useState('');
     const [mobNum, setMobNum] = useState('');
@@ -21,6 +26,7 @@ export default function Payment() {
     const [stateAddress, setStateAddress] = useState();
     const [city, setCity] = useState('');
     const [addressData, setAddressData] = useState([]);
+    const [createdOrder, setCreatedOrder] = useState([]);
     // Use Effect
     useEffect(() => {
         if (addressState === 'showNotify') {
@@ -31,6 +37,34 @@ export default function Payment() {
             }, 1200);
         }
     }, [addressState]);
+    useEffect(() => {
+        console.log(products);
+    }, [products]);
+    useEffect(() => {
+        console.log(createdOrder);
+        if (createdOrder.order_id) {
+            Object.entries(state.orderData).map(([productID, quantity]) => {
+                instance
+                    .post('/create-order-list', {
+                        product_id: productID,
+                        quantity: quantity,
+                        order_id: createdOrder.order_id,
+                    })
+                    .then((response) => {
+                        if (response.status === 200) console.log(response.data);
+                    })
+                    .catch((err) => console.log(err));
+            });
+        }
+    }, [createdOrder]);
+    useEffect(() => {
+        instance
+            .get('/view-products')
+            .then((response) => {
+                if (response.status === 200) setProducts(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     useEffect(() =>
         //---------------------Call API get user address----------
@@ -47,7 +81,6 @@ export default function Payment() {
                     console.log(err);
                 });
         }, []);
-        
 
     // Function
     const handleSubmit = (event) => {
@@ -89,10 +122,43 @@ export default function Payment() {
                 console.log(err);
             });
     };
-    const handlePayment = () => {};
+    const handlePaymenMedthod = (e) => {
+        setPaymentMethod(e.target.value);
+    };
+    const handlePayment = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        instance
+            .post('/create-order', {
+                paymentMethod: paymentMethod,
+                shippingPrice: 50000,
+                totalPrice: totalPrice,
+                isPaid: true,
+                isDelivered: false,
+                isShipped: false,
+                deliveryDate: Date(),
+                shippingAddress:
+                    selectedAddress.address +
+                    ',' +
+                    selectedAddress.city +
+                    ', ' +
+                    selectedAddress.state +
+                    ', ' +
+                    selectedAddress.pinCode,
+            })
+            .then((res) => {
+                if (res.status === 200) {
+                    setCreatedOrder(res.data);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     const handleSelectAddress = (address, i) => {
         setSelected(i);
+        setSelectedAddress(address);
     };
     const hideAddAddressForm = (event) => {
         event.preventDefault();
@@ -105,28 +171,6 @@ export default function Payment() {
         const formContainer = document.querySelector('.add-address-form-container');
         formContainer.classList.remove('hide');
     };
-
-    //test address
-    const address1 = [
-        {
-            name: 'Thanh',
-            address: '281 duong 9',
-            town: '5',
-            city: 'Ho Chi Minh',
-            state: 'state',
-            pincode: 'pincode',
-            mobNo: '0903821515',
-        },
-        {
-            name: 'Thanh',
-            address: '281 duong 9',
-            town: '5',
-            city: 'Ho Chi Minh',
-            state: 'state',
-            pincode: 'pincode',
-            mobNo: '0903821515',
-        },
-    ];
     return (
         <>
             <div className="add-address-form-container hide" onClick={(e) => hideAddAddressForm(e)}>
@@ -254,24 +298,34 @@ export default function Payment() {
                         <div className="billing">
                             <h4>PRICE DETAILS</h4>
                             <div className="details">
-                                <div className="item">
-                                    <p>Price</p>
-                                    <p>
-                                        cartPice<span>VND</span>
-                                    </p>
-                                </div>
+                                {Object.entries(state.orderData).map(([key, val]) => {
+                                    if (products[0]) {
+                                        totalPrice += products[key - 1].price * val;
+                                    }
+                                    return (
+                                        <div className="item">
+                                            <p>{products[0] && products[key - 1].name}</p>
+                                            <p>
+                                                {products[0] && products[key - 1].price * val}
+                                                <span>VND</span>
+                                            </p>
+                                        </div>
+                                    );
+                                })}
 
                                 <div className="item">
                                     <p>Delivery Charges</p>
                                     <p>
-                                        deleviryPrice<span>VND</span>
+                                        {deliveryPrice}
+                                        <span>VND</span>
                                     </p>
                                 </div>
                             </div>
                             <div className="total">
                                 <h3>Total</h3>
                                 <h3>
-                                    totalPrice<span>VND</span>
+                                    {totalPrice}
+                                    <span>VND</span>
                                 </h3>
                             </div>
                         </div>
@@ -280,20 +334,34 @@ export default function Payment() {
                             <div className="payments-opts">
                                 <div className="payment-method">
                                     <div className="select-opt">
-                                        <input type="radio" name="payment" id="cod" value="COD" />
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            id="cod"
+                                            value="COD"
+                                            onChange={(e) => handlePaymenMedthod(e)}
+                                        />
                                         <label htmlFor="cod">CASH ON DELIVERY</label>
                                     </div>
                                     <div className="select-opt">
-                                        <input type="radio" name="payment" id="paypal" value="paypal" />
-                                        <label htmlFor="paypal">ZALOPAY</label>
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            id="zalo"
+                                            value="zalo"
+                                            onChange={(e) => handlePaymenMedthod(e)}
+                                        />
+                                        <label htmlFor="zalo">ZALOPAY</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button onClick={handlePayment}>PAYMENT</button>
+                        <button onClick={(e) => handlePayment(e)}>PAYMENT</button>
                     </div>
                 </div>
             </div>
         </>
     );
 }
+
+export default Payment;

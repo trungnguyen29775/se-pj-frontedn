@@ -8,3 +8,4 @@ export const LOGGED = 'LOGGED';
 export const ORDER = 'ORDER';
 export const ADDRESS = 'ADDRESS';
 export const PAYMENT = 'PAYMENT';
+export const ORDER_PRODUCT = 'ADD_PRODUCT';

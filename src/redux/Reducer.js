@@ -8,6 +8,7 @@ import {
     ORDER,
     PAYMENT,
     SETTING,
+    ORDER_PRODUCT,
 } from '../constant/constant.redux';
 
 export const initState = {
@@ -18,6 +19,9 @@ export const initState = {
         email: '',
         userId: '',
         isAdmin: '',
+    },
+    orderData: {
+        //name : quantity
     },
 };
 
@@ -67,6 +71,15 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 element: FAVORITE,
+            };
+        }
+        case ORDER_PRODUCT: {
+            return {
+                ...state,
+                orderData: {
+                    ...state.orderData,
+                    [action.name]: action.quantity,
+                },
             };
         }
         default: {
