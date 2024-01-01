@@ -22,6 +22,7 @@ export const initState = {
         email: '',
         userId: '',
         isAdmin: '',
+        phoneNum: '',
     },
     orderData: [],
     orderDataId: [],
