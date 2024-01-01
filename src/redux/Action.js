@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import {
     ADDRESS,
     GET_USER_DATA,
@@ -8,6 +9,10 @@ import {
     SETTING,
     PAYMENT,
     FAVORITE,
+    PLUS_ORDER,
+    MINUS_ORDER,
+    ADD_ORDER,
+    CANCEL_ORDER,
     ADD_FAVORITE,
     REMOVE_FAVORITE,
     GET_FAVORITE_DATA,
@@ -66,26 +71,5 @@ export const navPayment = () => {
 export const navFavorite = () => {
     return {
         type: FAVORITE,
-    };
-};
-
-export const addFavorite = (payload) => {
-    return {
-        type: ADD_FAVORITE,
-        payload,
-    };
-};
-
-export const removeFavorite = (payload) => {
-    return {
-        type: REMOVE_FAVORITE,
-        payload,
-    };
-};
-
-export const getFavoriteData = (payload) => {
-    return {
-        type: GET_FAVORITE_DATA,
-        payload,
     };
 };

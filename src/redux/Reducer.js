@@ -11,6 +11,10 @@ import {
     PAYMENT,
     REMOVE_FAVORITE,
     SETTING,
+    ADD_ORDER,
+    PLUS_ORDER,
+    MINUS_ORDER,
+    CANCEL_ORDER,
 } from '../constant/constant.redux';
 
 export const initState = {
@@ -21,8 +25,11 @@ export const initState = {
         email: '',
         userId: '',
         isAdmin: '',
+        phoneNum: '',
         favorite: [],
     },
+    orderData: [],
+    orderDataId: [],
 };
 
 const Reducer = (state, action) => {
@@ -71,36 +78,6 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 element: FAVORITE,
-            };
-        }
-        case ADD_FAVORITE:
-            return {
-                ...state,
-                userData: {
-                    ...state.userData,
-                    favorite: [...state.userData.favorite, action.payload],
-                },
-            };
-
-        case REMOVE_FAVORITE:
-            const indexOfFavorite = state.userData.favorite.indexOf(action.payload);
-            console.log(indexOfFavorite);
-            return {
-                ...state,
-                userData: {
-                    ...state.userData,
-                    favorite: state.userData.favorite
-                        .slice(0, indexOfFavorite)
-                        .concat(state.userData.favorite.slice(indexOfFavorite + 1, state.userData.favorite.length)),
-                },
-            };
-        case GET_FAVORITE_DATA: {
-            return {
-                ...state,
-                userData: {
-                    ...state.userData,
-                    favorite: action.payload,
-                },
             };
         }
         default: {

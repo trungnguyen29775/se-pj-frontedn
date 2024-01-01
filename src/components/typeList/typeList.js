@@ -7,7 +7,7 @@ import StateContext from '../../redux/Context';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa';
 import { FAVORITE, HOME } from '../../constant/constant.redux';
-import { addFavorite, navFavorite, navHome, removeFavorite } from '../../redux/Action';
+import { addOrder, addFavorite, navFavorite, navHome, removeFavorite } from '../../redux/Action';
 
 function TypleList(props) {
     const [data, setData] = useState({});
@@ -15,7 +15,6 @@ function TypleList(props) {
     useEffect(() => {
         setData(props.data);
     }, [props]);
-
     const handleDeleteProduct = (e) => {
         e.stopPropagation();
         instance
@@ -58,6 +57,11 @@ function TypleList(props) {
             });
     };
 
+    const handleAddFood = (e) => {
+        e.stopPropagation();
+        dispatchState(addOrder(data));
+    };
+
     return (
         <div className="type-list-element">
             {state.login ? (
@@ -95,7 +99,7 @@ function TypleList(props) {
                     {data.countInStock}
                 </span>
 
-                <div className="add-food">
+                <div className="add-food" onClick={(e) => handleAddFood(e)}>
                     <AiOutlinePlus style={{ margin: 'auto' }} />
                 </div>
             </div>

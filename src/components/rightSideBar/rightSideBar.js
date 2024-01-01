@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import StateContext from '../../redux/Context';
-import { navPayment, getUserData } from '../../redux/Action';
+import { navPayment, getUserData, plusOrder, minusOrder, cancelOrder } from '../../redux/Action';
 import instance from '../../axios/instance';
 import Loading from '../loadingScreen/loading';
 import Succeed from '../succeed/succeed';
@@ -13,6 +13,7 @@ import Succeed from '../succeed/succeed';
 function RightSideBar() {
     const navigate = useNavigate();
     const [state, dispatchState] = useContext(StateContext);
+    const [products, setProducts] = useState([]);
     const [nameFood, setNameFood] = useState('');
     const [typeFood, setTypeFood] = useState('');
     const [priceFood, setPriceFood] = useState('');
@@ -21,7 +22,6 @@ function RightSideBar() {
     const [imagePathFood, setImagePathFood] = useState('');
     const [descriptonFood, setDescriptionFood] = useState('');
     const [addFoodState, setAddFoodState] = useState('');
-
     const handleLoginClick = (event) => {
         event.stopPropagation();
         navigate('/sign-in');
@@ -59,6 +59,25 @@ function RightSideBar() {
         dispatchState(navPayment());
         navigate('/payment');
     };
+    const handlePlusProduct = (data) => {
+        dispatchState(plusOrder(data));
+    };
+    const handleCancelProduct = (data) => {
+        dispatchState(cancelOrder(data));
+    };
+
+    const handleMinusProduct = (data) => {
+        dispatchState(minusOrder(data));
+    };
+
+    useEffect(() => {
+        instance
+            .get('/view-products')
+            .then((response) => {
+                if (response.status === 200) setProducts(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     // Use Effect
     useEffect(() => {
@@ -73,7 +92,7 @@ function RightSideBar() {
         event.preventDefault();
         setAddFoodState('onAdding');
         instance
-            .post('/add-product', {
+            .post('/add-products', {
                 name: nameFood,
                 type: typeFood,
                 price: priceFood,
@@ -100,7 +119,6 @@ function RightSideBar() {
                 console.log(err);
             });
     };
-
     return (
         <div className="right-side-bar-wrapper">
             {addFoodState === 'onAdding' ? <Loading /> : addFoodState === 'addFoodNotify' ? <Succeed /> : ''}
@@ -175,31 +193,37 @@ function RightSideBar() {
                         <span className="view-all">View All</span>
                     </div>
                     <div className="right-side-bar-order-list">
-                        <div className="order">
-                            <div className="order-img-container">
-                                <img src="/image/pizza/pizza1.jpg" />
-                            </div>
-                            <div className="order-detail">
-                                <span className="order-detail-header">Margarita Pizza</span>
-                                <span>Quantity: 18</span>
-                                <div className="edit-order-container">
-                                    <button>
-                                        <span style={{ margin: 'auto' }}>-</span>
-                                    </button>
-                                    <span>18</span>
-                                    <button>
-                                        <span style={{ margin: 'auto' }}>+</span>
-                                    </button>
-                                    <button className="danger">
-                                        <FaTrashAlt style={{ margin: 'auto' }} />
-                                    </button>
+                        {state.orderData?.map((item, index) => {
+                            return (
+                                <div className="order" key={index}>
+                                    <div className="order-img-container">
+                                        <img src={item.image_path} />
+                                    </div>
+                                    <div className="order-detail">
+                                        <span className="order-detail-header">{item.name}</span>
+                                        <span>Quantity: {item.countInStock}</span>
+                                        <div className="edit-order-container">
+                                            <button onClick={() => handleMinusProduct(item)}>
+                                                <span style={{ margin: 'auto' }}>-</span>
+                                            </button>
+                                            <span>{item.count}</span>
+                                            <button onClick={() => handlePlusProduct(item)}>
+                                                <span style={{ margin: 'auto' }}>+</span>
+                                            </button>
+                                            <button className="danger" onClick={() => handleCancelProduct(item)}>
+                                                <FaTrashAlt style={{ margin: 'auto' }} />
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            );
+                        })}
 
-                        <button className="right-side-bar-payment__button" onClick={(e) => handlePaymentClick(e)}>
-                            PROCEED TO CHECKOUT
-                        </button>
+                        {Object.keys(state.orderData).toString() && (
+                            <button className="right-side-bar-payment__button" onClick={(e) => handlePaymentClick(e)}>
+                                PROCEED TO CHECKOUT
+                            </button>
+                        )}
                     </div>
                 </div>
             )}

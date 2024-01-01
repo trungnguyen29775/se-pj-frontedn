@@ -14,14 +14,13 @@ function Home() {
     const foodList = document.querySelectorAll('.menu-type');
     const [type, setType] = useState('Pizza');
     const [active, setActive] = useState(0);
-
     useEffect(() => {
         console.log(products);
     }, [products]);
 
     useEffect(() => {
         instance
-            .get('/view-product')
+            .get('/view-products')
             .then((response) => {
                 if (response.status === 200) setProducts(response.data);
             })
@@ -56,6 +55,7 @@ function Home() {
                 break;
         }
     };
+
     return (
         <div className="home-wrapper">
             <Header />
