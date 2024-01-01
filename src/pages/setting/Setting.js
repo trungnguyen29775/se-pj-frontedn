@@ -15,7 +15,7 @@ export default function Setting() {
     const handleUpdate = (e) => {
         e.preventDefault();
         instance
-            .post('/update-info', {
+            .put('/update-info', {
                 user_id: state.userData.userId,
                 name: name,
                 email: email,

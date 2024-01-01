@@ -2,7 +2,7 @@ import './homeLayout.css';
 import LeftSideBar from '../../components/leftSideBar/leftSideBar';
 import RightSideBar from '../../components/rightSideBar/rightSideBar';
 import Home from '../../pages/home/home';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Setting from '../../pages/setting/Setting';
 import StateContext from '../../redux/Context';
 
@@ -13,7 +13,6 @@ import Favorite from '../../pages/favorite/favorite';
 
 function HomeLayout() {
     const [state, setState] = useContext(StateContext);
-    console.log(state);
     return (
         <div className="home-layout-wrapper">
             <LeftSideBar />
