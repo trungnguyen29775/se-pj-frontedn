@@ -9,12 +9,12 @@ import Loading from '../../components/loadingScreen/loading';
 import Succeed from '../../components/succeed/succeed';
 
 function Payment() {
-    const deliveryPrice = 50000;
-    let totalPrice = deliveryPrice;
+    const [deliveryPrice, setDeliveryPrice] = useState('50000');
+    const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
     const [selected, setSelected] = useState(0);
-    const [selectedAddress, setSelectedAddress] = useState([]);
-    const [paymentMethod, setPaymentMethod] = useState('');
+    const [selectedAddress, setSelectedAddress] = useState({});
+    const [paymentMethod, setPaymentMethod] = useState('COD');
     const [state, dispatchState] = useContext(StateContext);
     const [products, setProducts] = useState([]);
     const [addressState, setAddressState] = useState('');
@@ -38,16 +38,21 @@ function Payment() {
         }
     }, [addressState]);
     useEffect(() => {
-        console.log(products);
-    }, [products]);
+        let temp = 0;
+        if (state.orderData) {
+            state.orderData.map((item) => {
+                temp += parseInt(item.price) * parseInt(item.count) + parseInt(deliveryPrice);
+            });
+            setTotalPrice(temp.toString());
+        }
+    }, [state]);
     useEffect(() => {
-        console.log(createdOrder);
         if (createdOrder.order_id) {
-            Object.entries(state.orderData).map(([productID, quantity]) => {
+            state.orderData.map((item) => {
                 instance
                     .post('/create-order-list', {
-                        product_id: productID,
-                        quantity: quantity,
+                        product_id: item.product_id,
+                        quantity: item.count,
                         order_id: createdOrder.order_id,
                     })
                     .then((response) => {
@@ -57,6 +62,7 @@ function Payment() {
             });
         }
     }, [createdOrder]);
+
     useEffect(() => {
         instance
             .get('/view-products')
@@ -132,20 +138,13 @@ function Payment() {
             .post('/create-order', {
                 userId: state.userData.userId,
                 paymentMethod: paymentMethod,
-                shippingPrice: 50000,
+                shippingPrice: deliveryPrice.toString(),
                 totalPrice: totalPrice,
                 isPaid: true,
                 isDelivered: false,
                 isShipped: false,
                 deliveryDate: Date(),
-                shippingAddress:
-                    selectedAddress.address +
-                    ',' +
-                    selectedAddress.city +
-                    ', ' +
-                    selectedAddress.state +
-                    ', ' +
-                    selectedAddress.pinCode,
+                shippingAddress: `${selectedAddress.address}, ${selectedAddress.city}, ${selectedAddress.state}, ${selectedAddress.pinCode} `,
             })
             .then((res) => {
                 if (res.status === 200) {
@@ -299,21 +298,19 @@ function Payment() {
                         <div className="billing">
                             <h4>PRICE DETAILS</h4>
                             <div className="details">
-                                {Object.entries(state.orderData).map(([key, val]) => {
-                                    if (products[0]) {
-                                        totalPrice += products[key - 1].price * val;
-                                    }
+                                {state.orderData.map((item, index) => {
                                     return (
                                         <div className="item">
-                                            <p>{products[0] && products[key - 1].name}</p>
                                             <p>
-                                                {products[0] && products[key - 1].price * val}
+                                                {item.name}: x{item.count}{' '}
+                                            </p>
+                                            <p>
+                                                {item.price}
                                                 <span>VND</span>
                                             </p>
                                         </div>
                                     );
                                 })}
-
                                 <div className="item">
                                     <p>Delivery Charges</p>
                                     <p>
@@ -341,6 +338,7 @@ function Payment() {
                                             id="cod"
                                             value="COD"
                                             onChange={(e) => handlePaymenMedthod(e)}
+                                            checked={paymentMethod === 'COD' ? true : false}
                                         />
                                         <label htmlFor="cod">CASH ON DELIVERY</label>
                                     </div>
@@ -351,6 +349,7 @@ function Payment() {
                                             id="zalo"
                                             value="zalo"
                                             onChange={(e) => handlePaymenMedthod(e)}
+                                            checked={paymentMethod === 'zalo' ? true : false}
                                         />
                                         <label htmlFor="zalo">ZALOPAY</label>
                                     </div>
