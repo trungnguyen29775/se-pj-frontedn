@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import StateContext from '../../redux/Context';
-import { navPayment, getUserData, plusOrder, minusOrder, cancelOrder } from '../../redux/Action';
+import { navPayment, getUserData, plusOrder, minusOrder, cancelOrder, addProduct } from '../../redux/Action';
 import instance from '../../axios/instance';
 import Loading from '../loadingScreen/loading';
 import Succeed from '../succeed/succeed';
@@ -82,7 +82,7 @@ function RightSideBar() {
         event.preventDefault();
         setAddFoodState('onAdding');
         instance
-            .post('/add-products', {
+            .post('/add-product', {
                 name: nameFood,
                 type: typeFood,
                 price: priceFood,
@@ -102,6 +102,8 @@ function RightSideBar() {
                         setImagePathFood('');
                         setCountInStockFood('');
                         setDescriptionFood('');
+                        console.log(response.data);
+                        dispatchState(addProduct(response.data));
                     }, 1000);
                 }
             })

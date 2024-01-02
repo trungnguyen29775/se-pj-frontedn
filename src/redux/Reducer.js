@@ -15,6 +15,9 @@ import {
     PLUS_ORDER,
     MINUS_ORDER,
     CANCEL_ORDER,
+    GET_PRODUCT_DATA,
+    ADD_PRODUCT,
+    REMOVE_PRODUCT,
 } from '../constant/constant.redux';
 
 export const initState = {
@@ -30,6 +33,7 @@ export const initState = {
     },
     orderData: [],
     orderDataId: [],
+    productData: [],
 };
 
 const Reducer = (state, action) => {
@@ -48,7 +52,20 @@ const Reducer = (state, action) => {
         }
 
         case LOGOUT: {
-            return initState;
+            return {
+                ...state,
+                userData: {
+                    name: '',
+                    email: '',
+                    userId: '',
+                    isAdmin: '',
+                    phoneNum: '',
+                    favorite: [],
+                },
+                orderData: [],
+                orderDataId: [],
+                login: false,
+            };
         }
         case GET_USER_DATA: {
             return {
@@ -116,7 +133,7 @@ const Reducer = (state, action) => {
             const indexOfOrder = state.orderDataId.indexOf(action.payload.product_id);
             console.log(indexOfOrder);
             if (indexOfOrder === -1) {
-                newOrder = { ...newOrder, count: 0 };
+                newOrder = { ...newOrder, count: 1 };
                 return {
                     ...state,
                     orderDataId: [...state.orderDataId, action.payload.product_id],
@@ -168,6 +185,30 @@ const Reducer = (state, action) => {
                 orderData: state.orderData
                     .slice(0, indexOfOrder)
                     .concat(state.orderData.slice(indexOfOrder + 1, state.orderData.length)),
+            };
+        }
+
+        case GET_PRODUCT_DATA: {
+            return {
+                ...state,
+                productData: action.payload,
+            };
+        }
+
+        case ADD_PRODUCT: {
+            return {
+                ...state,
+                productData: [...state.productData, action.payload],
+            };
+        }
+
+        case REMOVE_PRODUCT: {
+            const targetDelete = state.productData.indexOf(action.payload);
+            return {
+                ...state,
+                productData: state.productData
+                    .slice(0, targetDelete)
+                    .concat(state.productData.slice(targetDelete + 1, state.productData.length)),
             };
         }
 

@@ -20,6 +20,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .home-search-container__input {
@@ -27,4 +28,44 @@
     border: 0px;
     font-size: 14px;
     font-weight: 500;
+}
+
+.searh-item--drop-down {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50px;
+    width: 100%;
+    left: 0;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.search-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.search-item:hover {
+    cursor: pointer;
+    opacity: 0.3;
+}
+
+.search-item__img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.hide {
+    display: none;
 }

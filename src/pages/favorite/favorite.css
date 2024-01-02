@@ -6,6 +6,7 @@
     background-color: #f1f1f1;
     box-sizing: border-box;
     align-items: center;
+    height: 100%;
 }
 .favorite-content-container {
     display: flex;

@@ -16,6 +16,9 @@ import {
     ADD_FAVORITE,
     REMOVE_FAVORITE,
     GET_FAVORITE_DATA,
+    GET_PRODUCT_DATA,
+    ADD_PRODUCT,
+    REMOVE_PRODUCT,
 } from '../constant/constant.redux';
 
 export const navSetting = () => {
@@ -119,6 +122,27 @@ export const minusOrder = (payload) => {
 export const cancelOrder = (payload) => {
     return {
         type: CANCEL_ORDER,
+        payload,
+    };
+};
+
+export const getProductData = (payload) => {
+    return {
+        type: GET_PRODUCT_DATA,
+        payload,
+    };
+};
+
+export const addProduct = (payload) => {
+    return {
+        type: ADD_PRODUCT,
+        payload,
+    };
+};
+
+export const removeProduct = (payload) => {
+    return {
+        type: REMOVE_PRODUCT,
         payload,
     };
 };

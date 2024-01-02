@@ -12,7 +12,7 @@ function OrderList(props) {
     const [list, setList] = useState([]);
     useEffect(() => {
         instance
-            .get('/view-products')
+            .get('/view-product')
             .then((response) => {
                 if (response.status === 200) setProducts(response.data);
             })

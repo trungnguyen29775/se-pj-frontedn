@@ -50,19 +50,54 @@ function LeftSideBar() {
     return (
         <div className="left-side-container">
             <div className="left-side-navigate-container">
-                <div className="left-side-navigate-icon-container home active " onClick={(e) => handleLeftSideNav(e)}>
+                <div
+                    className={
+                        state.element === 'HOME'
+                            ? 'left-side-navigate-icon-container home active'
+                            : 'left-side-navigate-icon-container home'
+                    }
+                    onClick={(e) => handleLeftSideNav(e)}
+                >
                     <FaHome style={{ margin: 'auto' }} />
                 </div>
-                <div className="left-side-navigate-icon-container order" onClick={(e) => handleLeftSideNav(e)}>
+                <div
+                    className={
+                        state.element === 'ORDER'
+                            ? 'left-side-navigate-icon-container order active'
+                            : 'left-side-navigate-icon-container order'
+                    }
+                    onClick={(e) => handleLeftSideNav(e)}
+                >
                     <FaBoxOpen style={{ margin: 'auto' }} />
                 </div>
-                <div className="left-side-navigate-icon-container favorite" onClick={(e) => handleLeftSideNav(e)}>
+                <div
+                    className={
+                        state.element === 'FAVORITE'
+                            ? 'left-side-navigate-icon-container favorite active'
+                            : 'left-side-navigate-icon-container favorite'
+                    }
+                    onClick={(e) => handleLeftSideNav(e)}
+                >
                     <IoIosHeartHalf style={{ margin: 'auto' }} />
                 </div>
-                <div className="left-side-navigate-icon-container address" onClick={(e) => handleLeftSideNav(e)}>
+                <div
+                    className={
+                        state.element === 'ADDRESS'
+                            ? 'left-side-navigate-icon-container address active'
+                            : 'left-side-navigate-icon-container address'
+                    }
+                    onClick={(e) => handleLeftSideNav(e)}
+                >
                     <FaRegFileAlt style={{ margin: 'auto' }} />
                 </div>
-                <div className="left-side-navigate-icon-container setting" onClick={(e) => handleLeftSideNav(e)}>
+                <div
+                    className={
+                        state.element === 'SETTING'
+                            ? 'left-side-navigate-icon-container setting active'
+                            : 'left-side-navigate-icon-container setting'
+                    }
+                    onClick={(e) => handleLeftSideNav(e)}
+                >
                     <IoSettingsOutline style={{ margin: 'auto' }} />
                 </div>
             </div>

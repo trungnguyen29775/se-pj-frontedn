@@ -6,23 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 import StateContext from '../../redux/Context';
 import Header from '../../components/header/header';
+import { getProductData } from '../../redux/Action';
 
 function Home() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
-    const [state, setState] = useContext(StateContext);
+    const [state, dispatchState] = useContext(StateContext);
     const foodList = document.querySelectorAll('.menu-type');
     const [type, setType] = useState('Pizza');
     const [active, setActive] = useState(0);
-    useEffect(() => {
-        console.log(products);
-    }, [products]);
 
     useEffect(() => {
         instance
             .get('/view-product')
             .then((response) => {
-                if (response.status === 200) setProducts(response.data);
+                if (response.status === 200) dispatchState(getProductData(response.data));
             })
             .catch((err) => console.log(err));
     }, []);
@@ -67,7 +65,7 @@ function Home() {
                     <div className="welcome-title-container">
                         <span className="header">Hello {state.userData.name}</span>
                         <span>
-                            Get Free delivery <span className="highlight">500 Rs</span> and above
+                            Get Free delivery <span className="highlight">50000 VND</span> and above
                         </span>
                         <button className="welcome__button">Order Now!</button>
                     </div>
@@ -119,7 +117,7 @@ function Home() {
                         </div>
                     </div>
                     <div className="type-list-container">
-                        {products
+                        {state.productData
                             .filter((product) => product.type.toLowerCase() === type.toLowerCase())
                             .map((item, key) => (
                                 <TypleList data={item} key={key} />

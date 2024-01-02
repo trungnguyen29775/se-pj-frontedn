@@ -4,10 +4,16 @@
     margin-top: 50px;
     flex-wrap: wrap;
 }
-.type-list-element__img {
+
+.type-list-element-container {
     height: 150px;
     width: 150px;
     overflow: hidden;
+}
+
+.type-list-element__img {
+    height: 150px;
+    width: 150px;
 }
 
 .type-list-element {
@@ -100,4 +106,10 @@
     color: var(--danger);
     display: flex;
     font-weight: 700;
+}
+
+.price-food {
+    width: 100%;
+    font-size: 15px;
+    margin: 5px 0px;
 }

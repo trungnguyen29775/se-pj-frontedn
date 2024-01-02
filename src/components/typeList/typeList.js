@@ -7,7 +7,7 @@ import StateContext from '../../redux/Context';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa';
 import { FAVORITE, HOME } from '../../constant/constant.redux';
-import { addOrder, addFavorite, navFavorite, navHome, removeFavorite } from '../../redux/Action';
+import { addOrder, addFavorite, navFavorite, navHome, removeFavorite, removeProduct } from '../../redux/Action';
 
 function TypleList(props) {
     const [data, setData] = useState({});
@@ -20,7 +20,7 @@ function TypleList(props) {
         instance
             .post('/delete-product', { productId: data.product_id })
             .then((response) => {
-                console.log(response.data);
+                dispatchState(removeProduct(data));
             })
             .catch((err) => {
                 console.log(err);
@@ -69,22 +69,28 @@ function TypleList(props) {
                     <div className="delete-product-button" onClick={(e) => handleDeleteProduct(e)}>
                         <span style={{ margin: 'auto' }}>X</span>
                     </div>
-                ) : state.element === HOME ? (
-                    <div className="favorite-product-button" onClick={(e) => handleAddFavorite(e)}>
-                        <FaRegHeart style={{ margin: 'auto' }} />
-                    </div>
-                ) : state.element === FAVORITE ? (
+                ) : state.userData.favorite ? (
+                    state.userData.favorite.indexOf(data) === -1 ? (
+                        <div className="favorite-product-button" onClick={(e) => handleAddFavorite(e)}>
+                            <FaRegHeart style={{ margin: 'auto' }} />
+                        </div>
+                    ) : (
+                        <div className="favorite-product-button" onClick={(e) => handleDeleteFavorite(e)}>
+                            <FaHeart style={{ margin: 'auto' }} />
+                        </div>
+                    )
+                ) : (
                     <div className="favorite-product-button" onClick={(e) => handleDeleteFavorite(e)}>
                         <FaHeart style={{ margin: 'auto' }} />
                     </div>
-                ) : (
-                    ''
                 )
             ) : (
                 ''
             )}
 
-            <img className="type-list-element__img" src={data.image_path} />
+            <div className="type-list-element-container">
+                <img className="type-list-element__img" src={data.image_path} />
+            </div>
             <span className="name-food">{data.name}</span>
             <div className="star-container">
                 <FaStar />
@@ -93,6 +99,7 @@ function TypleList(props) {
                 <FaStar />
                 <FaStar />
             </div>
+            <span className="price-food">Price: {data.price}VND</span>
             <div className="number-left">
                 <span>
                     <span className="highlight">Rs. </span>
