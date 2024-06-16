@@ -158,7 +158,7 @@ function Address() {
                         </div>
                         <div className="address-list">
                             {addressData ? (
-                                addressData.map((address, i) => (
+                                addressData?.map((address, i) => (
                                     <div className="og-add" key={address.address_id}>
                                         <p>{address.name}</p>
                                         <span>

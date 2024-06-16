@@ -27,7 +27,7 @@ function Favorite() {
                 <div className="favorite-content-container">
                     <span className="favorite-content-header">My Wishlist</span>
                     {state.userData.favorite ? (
-                        state.userData.favorite.length != 0 ? (
+                        state.userData.favorite ? (
                             <div className="type-list-container">
                                 {state.userData.favorite?.map((item, index) => {
                                     return <TypleList data={item} key={index} nav={'favorite'} />;

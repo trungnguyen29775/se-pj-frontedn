@@ -89,9 +89,9 @@ function TypleList(props) {
             )}
 
             <div className="type-list-element-container">
-                <img className="type-list-element__img" src={data.image_path} />
+                <img className="type-list-element__img" src={data ? data.image_path : ''} />
             </div>
-            <span className="name-food">{data.name}</span>
+            <span className="name-food">{data?.name}</span>
             <div className="star-container">
                 <FaStar />
                 <FaStar />
@@ -99,11 +99,11 @@ function TypleList(props) {
                 <FaStar />
                 <FaStar />
             </div>
-            <span className="price-food">Price: {data.price}VND</span>
+            <span className="price-food">Price: {data?.price}VND</span>
             <div className="number-left">
                 <span>
                     <span className="highlight">Rs. </span>
-                    {data.countInStock}
+                    {data?.countInStock}
                 </span>
 
                 <div className="add-food" onClick={(e) => handleAddFood(e)}>
