@@ -54,6 +54,8 @@ function Home() {
         }
     };
 
+    const ad = '';
+
     return (
         <div className="home-wrapper">
             <Header />
