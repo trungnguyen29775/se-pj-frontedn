@@ -53,7 +53,6 @@ function Home() {
                 break;
         }
     };
-    const test = '';
 
     return (
         <div className="home-wrapper">
