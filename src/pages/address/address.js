@@ -159,26 +159,26 @@ function Address() {
                         <div className="address-list">
                             {addressData ? (
                                 addressData?.map((address, i) => (
-                                    <div className="og-add" key={address.address_id}>
+                                    <div className="og-add" key={address?.address_id}>
                                         <p>{address.name}</p>
                                         <span>
                                             <b>Address :</b>
-                                            {address.address},<b>Town :</b>
-                                            {address.town}
+                                            {address?.address},<b>Town :</b>
+                                            {address?.town}
                                         </span>
                                         <span>
                                             <b>City :</b>
-                                            {address.city},<b>State :</b>
-                                            {address.state} -<b>Pin code :</b>
-                                            {address.pinCode}{' '}
+                                            {address?.city},<b>State :</b>
+                                            {address?.state} -<b>Pin code :</b>
+                                            {address?.pinCode}{' '}
                                         </span>
                                         <span>
                                             <b>Mobile No:</b>
-                                            {address.mobNo}
+                                            {address?.mobNo}
                                         </span>
                                         <div className="btns">
                                             <button
-                                                className={`btn ${address.address_id}`}
+                                                className={`btn ${address?.address_id}`}
                                                 onClick={(e) => deleteAddress(e)}
                                             >
                                                 Remove

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './header.css';
 import { IoIosSearch } from 'react-icons/io';
 import instance from '../../axios/instance';
+import TypleList from '../typeList/typeList';
 
 function Header() {
     const [search, setSearch] = useState('');
@@ -57,6 +58,11 @@ function Header() {
         setSearch(event.target.value);
     };
 
+    const handelShowProduct = (event, payload) => {
+        event.stopPropagation();
+        console.log(payload);
+    };
+
     return (
         <div className="home-header-container">
             <img className="logo__img" src="image/logo.png" />
@@ -64,7 +70,7 @@ function Header() {
                 <div className="searh-item--drop-down">
                     {searchResult?.map((item, key) => {
                         return (
-                            <div className="search-item" key={key}>
+                            <div onClick={(e) => handelShowProduct(e, item)} className="search-item" key={key}>
                                 <img className="search-item__img" src={item.image_path} />
                                 <span className="search-item__span">{item.name}</span>
                             </div>

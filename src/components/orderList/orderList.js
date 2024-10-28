@@ -24,7 +24,10 @@ function OrderList(props) {
                 order_id: data.order_id,
             })
             .then((response) => {
-                if (response.status === 200) setList(response.data);
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setList(response.data);
+                }
             })
             .catch((err) => {
                 console.log(err);

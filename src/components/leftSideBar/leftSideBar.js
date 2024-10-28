@@ -60,6 +60,7 @@ function LeftSideBar() {
                 >
                     <FaHome style={{ margin: 'auto' }} />
                 </div>
+
                 <div
                     className={
                         state.element === 'ORDER'
@@ -70,26 +71,37 @@ function LeftSideBar() {
                 >
                     <FaBoxOpen style={{ margin: 'auto' }} />
                 </div>
-                <div
-                    className={
-                        state.element === 'FAVORITE'
-                            ? 'left-side-navigate-icon-container favorite active'
-                            : 'left-side-navigate-icon-container favorite'
-                    }
-                    onClick={(e) => handleLeftSideNav(e)}
-                >
-                    <IoIosHeartHalf style={{ margin: 'auto' }} />
-                </div>
-                <div
-                    className={
-                        state.element === 'ADDRESS'
-                            ? 'left-side-navigate-icon-container address active'
-                            : 'left-side-navigate-icon-container address'
-                    }
-                    onClick={(e) => handleLeftSideNav(e)}
-                >
-                    <FaRegFileAlt style={{ margin: 'auto' }} />
-                </div>
+
+                {state.userData?.isAdmin != 1 ? (
+                    <div
+                        className={
+                            state.element === 'FAVORITE'
+                                ? 'left-side-navigate-icon-container favorite active'
+                                : 'left-side-navigate-icon-container favorite'
+                        }
+                        onClick={(e) => handleLeftSideNav(e)}
+                    >
+                        <IoIosHeartHalf style={{ margin: 'auto' }} />
+                    </div>
+                ) : (
+                    ''
+                )}
+
+                {state.userData?.isAdmin != 1 ? (
+                    <div
+                        className={
+                            state.element === 'ADDRESS'
+                                ? 'left-side-navigate-icon-container address active'
+                                : 'left-side-navigate-icon-container address'
+                        }
+                        onClick={(e) => handleLeftSideNav(e)}
+                    >
+                        <FaRegFileAlt style={{ margin: 'auto' }} />
+                    </div>
+                ) : (
+                    ''
+                )}
+
                 <div
                     className={
                         state.element === 'SETTING'

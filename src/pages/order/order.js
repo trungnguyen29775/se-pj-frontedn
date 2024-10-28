@@ -31,7 +31,7 @@ function Order() {
             </div>
             <div className="order-page-content">
                 {order[0] ? (
-                    order.map((order, index) => {
+                    order?.map((order, index) => {
                         return <OrderList data={order} key={index} />;
                     })
                 ) : (
